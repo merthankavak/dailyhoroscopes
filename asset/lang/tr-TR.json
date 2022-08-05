@@ -1,0 +1,66 @@
+{
+    "sign": {
+        "capricorn": "Oğlak",
+        "aquarius": "Kova",
+        "pisces": "Balık",
+        "aries": "Koç",
+        "taurus": "Boğa",
+        "gemini": "İkizler",
+        "cancer": "Yengeç",
+        "leo": "Aslan",
+        "virgo": "Başak",
+        "libra": "Terazi",
+        "scorpio": "Akrep",
+        "sagittarius": "Yay"
+    },
+    "splash": {
+        "welcome": "Daily Horoscopes"
+    },
+    "onBoard": {
+        "page1": {
+            "title": "Günlük Burçlar",
+            "desc": "Dün, bugün ve yarın için günlük burçlar."
+        },
+        "page2": {
+            "title": "Burç Detayları",
+            "desc": "Burç uyumluluğu, ruh hali, renk, şanslı sayı ve şanslı saat gibi ayrıntılarla tahminler."
+        },
+        "page3": {
+            "title": "Kullanımı Kolay",
+            "desc": "Burç tahminlerini kolay bir şekilde takip etmenizi sağlar."
+        },
+        "getStarted": "Başlarken",
+        "onBoardSubView": {
+            "name": "İsim",
+            "date": "Doğum Tarihi",
+            "button": "Kaydet"
+        }
+    },
+
+    "home": {
+        "appBarTitle": "Daily Horoscopes",
+        "welcome": "Hoşgeldin, ",
+        "tabBar": {
+            "yesterday": "Dün",
+            "today": "Bugün",
+            "tomorrow": "Yarın"
+        },
+        "explore": "Keşfet",
+        "luckyNumber": "Şanslı Sayı",
+        "luckyTime": "Şanslı Zaman",
+        "color": "Renk",
+        "mood": "Mod",
+        "dateRange": "Tarih Aralığı",
+        "compatibility": "Uyumluluk",
+        "alert": {
+            "title": "Çıkış",
+            "desc": "Gerçekten oturumunuzu kapatmak istiyor musunuz?",
+            "continue": "Devam et",
+            "cancel": "İptal"
+        }
+    },
+    "notFound": "Not Found",
+    "isValidName": "İsim geçerli değil!",
+    "isValidBirthDate": "Doğum tarihi geçerli değil!"
+
+}

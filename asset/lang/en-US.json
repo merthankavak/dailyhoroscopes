@@ -1,0 +1,65 @@
+{
+    "sign": {
+        "capricorn": "Capricorn",
+        "aquarius": "Aquarius",
+        "pisces": "Pisces",
+        "aries": "Aries",
+        "taurus": "Taurus",
+        "gemini": "Gemini",
+        "cancer": "Cancer",
+        "leo": "Leo",
+        "virgo": "Virgo",
+        "libra": "Libra",
+        "scorpio": "Scorpio",
+        "sagittarius": "Sagittarius"
+    },
+    "splash": {
+        "welcome": "Daily Horoscopes"
+    },
+    "onBoard": {
+        "page1": {
+            "title": "Daily Horoscopes",
+            "desc": "Daily horoscopes for yesterday, today, and tomorrow."
+        },
+        "page2": {
+            "title": "Horoscope Details",
+            "desc": "Predictions with details like horoscope compatibility, mood, color, lucky number, and lucky hour."
+        },
+        "page3": {
+            "title": "Easy To Use",
+            "desc": "It allows you to follow the horoscope predictions in an easy way."
+        },
+        "getStarted": "Get Started",
+        "onBoardSubView": {
+            "name": "Name",
+            "date": "Date of Birth",
+            "button": "Save"
+        }
+    },
+    "home": {
+        "appBarTitle": "Daily Horoscopes",
+        "welcome": "Welcome, ",
+        "tabBar": {
+            "yesterday": "Yesterday",
+            "today": "Today",
+            "tomorrow": "Tomorrow"
+        },
+        "explore": "Explore",
+        "luckyNumber": "Lucky Number",
+        "luckyTime": "Lucky Time",
+        "color": "Color",
+        "mood": "Mood",
+        "dateRange": "Date Range",
+        "compatibility": "Compatibility",
+        "alert": {
+            "title": "Logout",
+            "desc": "Do you really want to log out?",
+            "continue": "Continue",
+            "cancel": "Cancel"
+        }
+
+    },
+    "notFound": "Not Found",
+    "isValidName": "Name does not valid!",
+    "isValidBirthDate": "BirthDate does not valid!"
+}
