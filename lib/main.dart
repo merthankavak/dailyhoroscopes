@@ -18,8 +18,7 @@ Future<void> main() async {
 
 Future<void> _init() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
-  await Hive.initFlutter();
+  await Future.wait([EasyLocalization.ensureInitialized(), Hive.initFlutter()]);
 }
 
 class MyApp extends StatelessWidget {

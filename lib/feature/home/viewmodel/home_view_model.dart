@@ -109,9 +109,8 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   @action
   Future<void> clearData() async {
     _changeLoading();
-    await cacheManager.init();
-    await cacheManager.box!.clear();
-    await cacheManager.addItem(AppCacheModel());
+    await Future.wait(
+        [cacheManager.init(), cacheManager.box!.clear(), cacheManager.addItem(AppCacheModel())]);
     navigation.router.go(NavigationEnums.onBoardView.rawValue);
     _changeLoading();
   }

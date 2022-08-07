@@ -78,8 +78,8 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
           birthDate: dateTextFieldController!.text,
           isFirstInit: false,
           horoscopeSign: dateTextFieldController!.text.getZodiacSignName);
-      await cacheManager.init();
-      await cacheManager.putItem(CacheConstants.appCache, appCacheModel);
+      await Future.wait(
+          [cacheManager.init(), cacheManager.putItem(CacheConstants.appCache, appCacheModel)]);
     }
     navigation.router.go(NavigationEnums.homeView.rawValue);
     _changeLoading();

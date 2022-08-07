@@ -28,10 +28,8 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
   @override
   void init() => cacheManager = AppCacheManager(CacheConstants.appCache);
 
-  Future<void> controlAppState(Duration duration) async {
-    await getUserData();
-    await checkIsFirstOpen(duration);
-  }
+  Future<void> controlAppState(Duration duration) async =>
+      await Future.wait([getUserData(), checkIsFirstOpen(duration)]);
 
   Future<void> getUserData() async {
     await cacheManager.init();
