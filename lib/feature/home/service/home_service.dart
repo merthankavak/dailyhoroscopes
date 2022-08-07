@@ -3,7 +3,7 @@ import 'package:vexana/vexana.dart';
 import '../../../../product/constants/enum/horoscope_query_enums.dart';
 import '../../../../product/constants/enum/network_routes_enum.dart';
 import '../../../../product/model/horoscope_query_model.dart';
-import '../../../../product/utility/service_helper.dart';
+import '../../../product/utility/service_helper.dart';
 import '../model/home_model.dart';
 import 'home_service_interface.dart';
 

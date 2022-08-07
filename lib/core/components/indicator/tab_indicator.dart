@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -8,7 +10,6 @@ class TabIndicator extends StatefulWidget {
   const TabIndicator({Key? key, required this.selectedIndex, required this.itemLength})
       : super(key: key);
   @override
-  // ignore: library_private_types_in_public_api
   _TabIndicatorState createState() => _TabIndicatorState();
 }
 

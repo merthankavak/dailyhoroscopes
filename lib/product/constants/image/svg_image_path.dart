@@ -1,4 +1,4 @@
-import '../../core/extension/image_extension.dart';
+import '../../../core/extension/image_extension.dart';
 
 class SvgImagePaths {
   static SvgImagePaths? _instance;

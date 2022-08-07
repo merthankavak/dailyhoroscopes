@@ -7,6 +7,8 @@ import '../../../../core/base/view/base_view.dart';
 import '../../../../core/components/indicator/loading_indicator.dart';
 import '../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../product/model/horoscope_info_model.dart';
+import '../../../core/components/card/no_network_card.dart';
+import '../../../core/constants/enums/network_connectivity_enums.dart';
 import '../../../core/init/lang/language_manager.dart';
 import '../../../product/widgets/card/home_welcome_card.dart';
 import '../../../product/widgets/card/horoscope_detail_card.dart';
@@ -24,8 +26,6 @@ class HomeView extends StatelessWidget {
         onModelReady: (model) {
           model.setContext(context);
           model.init();
-          model.getUserData();
-          model.getDefaultHoroscope();
         },
         onPageBuilder: (BuildContext context, HomeViewModel viewModel) => DefaultTabController(
             length: viewModel.tabBarTitles!.length,
@@ -33,11 +33,14 @@ class HomeView extends StatelessWidget {
                 key: viewModel.scaffoldKey,
                 appBar: buildAppBar(viewModel, context),
                 body: Observer(
-                    builder: (_) => viewModel.isLoading
-                        ? const LoadingIndicator()
-                        : viewModel.homeModel == null
-                            ? Center(child: Text(LocaleKeys.notFound.tr()))
-                            : buildSingleChildScrollView(context, viewModel)))));
+                    builder: (_) =>
+                        viewModel.networkConnectivityEnums == NetworkConnectivityEnums.off
+                            ? const NoNetworkCard()
+                            : viewModel.isLoading
+                                ? const LoadingIndicator()
+                                : viewModel.homeModel == null
+                                    ? Center(child: Text(LocaleKeys.notFound.tr()))
+                                    : buildSingleChildScrollView(context, viewModel)))));
   }
 
   AppBar buildAppBar(HomeViewModel viewModel, BuildContext context) =>

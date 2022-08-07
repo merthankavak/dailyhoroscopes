@@ -18,7 +18,6 @@ class SplashView extends StatelessWidget {
       onModelReady: (model) {
         model.setContext(context);
         model.init();
-        model.controlAppState(context.durationSlow);
       },
       onPageBuilder: (BuildContext context, SplashViewModel viewModel) => Scaffold(
         backgroundColor: context.colorScheme.primary,

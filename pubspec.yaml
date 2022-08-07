@@ -18,14 +18,12 @@ dependencies:
   mobx: ^2.0.7+5
   flutter_mobx: ^2.0.6+1
 
-  #Core
-  kartal: ^2.3.2
-
   #Database
   hive_flutter: ^1.1.0
 
   #Network
   vexana: ^3.0.1
+  connectivity_plus: ^2.3.6
 
   #Localization
   easy_localization: ^3.0.1
@@ -39,6 +37,7 @@ dependencies:
   #UI Utitilities
   flutter_svg: ^1.1.1+1
   animated_text_kit: ^4.2.2
+  kartal: ^2.3.2
   
 dev_dependencies:
   flutter_test:

@@ -13,7 +13,7 @@ import '../../../../core/base/viewmodel/base_view_model.dart';
 import '../../../../core/constants/enums/navigation_enums.dart';
 import '../../../../core/extension/navigation_extension.dart';
 import '../../../../core/init/lang/locale_keys.g.dart';
-import '../../../../product/constants/svg_image_path.dart';
+import '../../../../product/constants/image/svg_image_path.dart';
 import '../model/onboard_model.dart';
 
 part 'onboard_view_model.g.dart';
@@ -29,7 +29,7 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
   TextEditingController? nameTextFieldController;
   TextEditingController? dateTextFieldController;
 
-  late final CacheManagerInterface cacheManager;
+  late final CacheManagerInterface<AppCacheModel> cacheManager;
 
   AppCacheModel? appCacheModel;
   List<OnBoardModel> onBoardItems = [];
@@ -78,8 +78,8 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
           birthDate: dateTextFieldController!.text,
           isFirstInit: false,
           horoscopeSign: dateTextFieldController!.text.getZodiacSignName);
-      await Future.wait(
-          [cacheManager.init(), cacheManager.putItem(CacheConstants.appCache, appCacheModel)]);
+      await cacheManager.init();
+      await cacheManager.putItem(CacheConstants.appCache, appCacheModel!);
     }
     navigation.router.go(NavigationEnums.homeView.rawValue);
     _changeLoading();

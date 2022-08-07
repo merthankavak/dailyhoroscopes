@@ -73,6 +73,23 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  late final _$networkConnectivityEnumsAtom = Atom(
+      name: '_HomeViewModelBase.networkConnectivityEnums', context: context);
+
+  @override
+  NetworkConnectivityEnums? get networkConnectivityEnums {
+    _$networkConnectivityEnumsAtom.reportRead();
+    return super.networkConnectivityEnums;
+  }
+
+  @override
+  set networkConnectivityEnums(NetworkConnectivityEnums? value) {
+    _$networkConnectivityEnumsAtom
+        .reportWrite(value, super.networkConnectivityEnums, () {
+      super.networkConnectivityEnums = value;
+    });
+  }
+
   late final _$userSignAtom =
       Atom(name: '_HomeViewModelBase.userSign', context: context);
 
@@ -105,6 +122,14 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  late final _$homeStateControlAsyncAction =
+      AsyncAction('_HomeViewModelBase.homeStateControl', context: context);
+
+  @override
+  Future<void> homeStateControl() {
+    return _$homeStateControlAsyncAction.run(() => super.homeStateControl());
+  }
+
   late final _$getDefaultHoroscopeAsyncAction =
       AsyncAction('_HomeViewModelBase.getDefaultHoroscope', context: context);
 
@@ -123,14 +148,6 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
         .run(() => super.getSpecificHoroscope(horoscopeSign));
   }
 
-  late final _$clearDataAsyncAction =
-      AsyncAction('_HomeViewModelBase.clearData', context: context);
-
-  @override
-  Future<void> clearData() {
-    return _$clearDataAsyncAction.run(() => super.clearData());
-  }
-
   late final _$changeAppLocaleAsyncAction =
       AsyncAction('_HomeViewModelBase.changeAppLocale', context: context);
 
@@ -140,13 +157,22 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
         .run(() => super.changeAppLocale(locale));
   }
 
-  late final _$sendExploreViewAsyncAction =
-      AsyncAction('_HomeViewModelBase.sendExploreView', context: context);
+  late final _$getUserDataAsyncAction =
+      AsyncAction('_HomeViewModelBase.getUserData', context: context);
 
   @override
-  Future<void> sendExploreView(String horoscopeSign) {
-    return _$sendExploreViewAsyncAction
-        .run(() => super.sendExploreView(horoscopeSign));
+  Future<void> getUserData() {
+    return _$getUserDataAsyncAction.run(() => super.getUserData());
+  }
+
+  late final _$checkFirstTimeInternetConnectionAsyncAction = AsyncAction(
+      '_HomeViewModelBase.checkFirstTimeInternetConnection',
+      context: context);
+
+  @override
+  Future<void> checkFirstTimeInternetConnection() {
+    return _$checkFirstTimeInternetConnectionAsyncAction
+        .run(() => super.checkFirstTimeInternetConnection());
   }
 
   late final _$_HomeViewModelBaseActionController =
@@ -192,6 +218,7 @@ appLocale: ${appLocale},
 isLoading: ${isLoading},
 isFetching: ${isFetching},
 homeModel: ${homeModel},
+networkConnectivityEnums: ${networkConnectivityEnums},
 userSign: ${userSign},
 currentIndex: ${currentIndex}
     ''';

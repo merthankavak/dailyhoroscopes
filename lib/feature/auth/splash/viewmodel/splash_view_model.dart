@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../core/base/viewmodel/base_view_model.dart';
@@ -26,10 +27,17 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
   bool? isFirstOpen;
 
   @override
-  void init() => cacheManager = AppCacheManager(CacheConstants.appCache);
+  void init() {
+    cacheManager = AppCacheManager(CacheConstants.appCache);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      controlAppState(baseContext.durationSlow);
+    });
+  }
 
-  Future<void> controlAppState(Duration duration) async =>
-      await Future.wait([getUserData(), checkIsFirstOpen(duration)]);
+  Future<void> controlAppState(Duration duration) async {
+    await getUserData();
+    await checkIsFirstOpen(duration);
+  }
 
   Future<void> getUserData() async {
     await cacheManager.init();

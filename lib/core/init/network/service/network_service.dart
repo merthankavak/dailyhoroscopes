@@ -11,6 +11,6 @@ class NetworkService {
 
   static const String _baseUrl = 'https://aztro.sameerkumar.website/';
 
-  final INetworkManager networkManager = NetworkManager(
-      isEnableLogger: true, fileManager: LocalFile(), options: BaseOptions(baseUrl: _baseUrl));
+  final INetworkManager networkManager =
+      NetworkManager(fileManager: LocalFile(), options: BaseOptions(baseUrl: _baseUrl));
 }

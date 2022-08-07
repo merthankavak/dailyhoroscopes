@@ -5,6 +5,6 @@ abstract class ServiceHelper {
   void showMessage(GlobalKey<ScaffoldState>? scaffoldKey, IErrorModel? errorModel) {
     if (scaffoldKey == null || errorModel == null) return;
     ScaffoldMessenger.of(scaffoldKey.currentContext!).showSnackBar(
-        SnackBar(backgroundColor: Colors.black, content: Text(errorModel.description!)));
+        SnackBar(backgroundColor: Colors.black, content: Text(errorModel.statusCode.toString())));
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../init/navigation/navigation_service.dart';
-import '../../init/network/network_service.dart';
+import '../../init/network/service/network_service.dart';
 
 abstract class BaseViewModel {
   late BuildContext baseContext;
