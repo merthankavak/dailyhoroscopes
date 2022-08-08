@@ -56,7 +56,6 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   @observable
   NetworkConnectivityEnums? networkConnectivityEnums;
 
-  @observable
   String? userSign;
 
   @observable
@@ -100,14 +99,12 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   @action
   void _changeFetching() => isFetching = !isFetching;
 
-  @action
   Future<void> homeStateControl() async {
     await cacheManager.init();
     await getUserData();
     await getDefaultHoroscope();
   }
 
-  @action
   Future<void> getDefaultHoroscope() async {
     _changeLoading();
     homeModel = await homeService
@@ -140,7 +137,6 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     await baseContext.setLocale(locale);
   }
 
-  @action
   Future<void> getUserData() async {
     appCacheModel = cacheManager.getItem(CacheConstants.appCache);
     userSign = appCacheModel!.horoscopeSign!;
