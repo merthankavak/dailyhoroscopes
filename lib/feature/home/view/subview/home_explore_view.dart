@@ -5,7 +5,6 @@ import 'package:kartal/kartal.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/components/indicator/loading_indicator.dart';
 import '../../../../core/constants/enums/navigation_enums.dart';
-import '../../../../core/extension/navigation_extension.dart';
 import '../../../../product/widgets/card/horoscope_detail_card.dart';
 import '../../viewmodel/home_view_model.dart';
 
@@ -36,7 +35,7 @@ class HomeExploreView extends StatelessWidget {
   AppBar buildAppBar(HomeViewModel viewModel) => AppBar(
       title: Text(horoscopeSign.toCapitalized()),
       leading: IconButton(
-          onPressed: () => viewModel.navigation.router.go(NavigationEnums.homeView.rawValue),
+          onPressed: () => viewModel.navigation.router.go(NavigationEnums.homeView.routeName),
           icon: const Icon(Icons.arrow_back)));
 
   SingleChildScrollView buildSingleChildScrollView(BuildContext context, HomeViewModel viewModel) =>

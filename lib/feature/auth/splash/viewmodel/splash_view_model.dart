@@ -7,7 +7,6 @@ import 'package:mobx/mobx.dart';
 import '../../../../core/base/viewmodel/base_view_model.dart';
 import '../../../../core/constants/cache/cache_constants.dart';
 import '../../../../core/constants/enums/navigation_enums.dart';
-import '../../../../core/extension/navigation_extension.dart';
 import '../../../../core/init/cache/app_cache_manager.dart';
 import '../../../../core/init/cache/cache_manager_interface.dart';
 import '../../../../product/model/app_cache_model.dart';
@@ -48,10 +47,10 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
   Future<void> checkIsFirstOpen(Duration duration) async {
     isFirstOpen == false
         ? await Future.delayed(duration).then((value) {
-            navigation.router.go(NavigationEnums.homeView.rawValue);
+            navigation.router.go(NavigationEnums.homeView.routeName);
           })
         : await Future.delayed(duration).then((value) {
-            navigation.router.go(NavigationEnums.onBoardView.rawValue);
+            navigation.router.go(NavigationEnums.onBoardView.routeName);
           });
   }
 }

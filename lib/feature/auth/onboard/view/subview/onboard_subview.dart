@@ -9,7 +9,6 @@ import '../../../../../core/components/button/title_text_button.dart';
 import '../../../../../core/components/indicator/loading_indicator.dart';
 import '../../../../../core/constants/enums/navigation_enums.dart';
 import '../../../../../core/extension/birthdate_input_formatter.dart';
-import '../../../../../core/extension/navigation_extension.dart';
 import '../../../../../core/extension/string_extension.dart';
 import '../../../../../core/init/lang/locale_keys.g.dart';
 import '../../viewmodel/onboard_view_model.dart';
@@ -39,7 +38,7 @@ class OnBoardSubView extends StatelessWidget {
       title: Text(LocaleKeys.onBoard_getStarted.tr(),
           style: TextStyle(color: context.colorScheme.onPrimary)),
       leading: IconButton(
-          onPressed: () => viewModel.navigation.router.go(NavigationEnums.onBoardView.rawValue),
+          onPressed: () => viewModel.navigation.router.go(NavigationEnums.onBoardView.routeName),
           icon: const Icon(Icons.arrow_back),
           color: context.colorScheme.onPrimary));
 

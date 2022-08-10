@@ -1,14 +1,7 @@
-enum HoroscopeQueryEnum { sign, day }
+enum HoroscopeQueryEnum {
+  sign('sign'),
+  day('day');
 
-extension HoroscopeQueryEnumExtension on HoroscopeQueryEnum {
-  String get rawValue {
-    switch (this) {
-      case HoroscopeQueryEnum.sign:
-        return 'sign';
-      case HoroscopeQueryEnum.day:
-        return 'day';
-      default:
-        throw Exception('Not found');
-    }
-  }
+  final String query;
+  const HoroscopeQueryEnum(this.query);
 }

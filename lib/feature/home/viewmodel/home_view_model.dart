@@ -2,7 +2,6 @@
 
 import 'package:dailyhoroscopes/core/constants/enums/navigation_enums.dart';
 import 'package:dailyhoroscopes/core/constants/enums/network_connectivity_enums.dart';
-import 'package:dailyhoroscopes/core/extension/navigation_extension.dart';
 import 'package:dailyhoroscopes/core/init/cache/app_cache_manager.dart';
 import 'package:dailyhoroscopes/core/init/cache/cache_manager_interface.dart';
 import 'package:dailyhoroscopes/core/init/lang/language_manager.dart';
@@ -124,7 +123,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     _changeLoading();
     await cacheManager.box!.clear();
     await cacheManager.addItem(AppCacheModel());
-    navigation.router.go(NavigationEnums.onBoardView.rawValue);
+    navigation.router.go(NavigationEnums.onBoardView.routeName);
     _changeLoading();
   }
 
@@ -148,7 +147,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   }
 
   void sendExploreView(String horoscopeSign) {
-    navigation.router.goNamed(NavigationEnums.homeExploreView.rawValue,
+    navigation.router.goNamed(NavigationEnums.homeExploreView.routeName,
         params: {'horoscopeSign': horoscopeSign});
   }
 }

@@ -6,7 +6,6 @@ import '../../../feature/auth/splash/view/splash_view.dart';
 import '../../../feature/home/view/home_view.dart';
 import '../../../feature/home/view/subview/home_explore_view.dart';
 import '../../constants/enums/navigation_enums.dart';
-import '../../extension/navigation_extension.dart';
 
 class NavigationService {
   static NavigationService? _instance;
@@ -19,17 +18,19 @@ class NavigationService {
 
   final router = GoRouter(routes: [
     GoRoute(
-        path: NavigationEnums.splashView.rawValue, builder: (context, state) => const SplashView()),
+        path: NavigationEnums.splashView.routeName,
+        builder: (context, state) => const SplashView()),
     GoRoute(
-        path: NavigationEnums.onBoardView.rawValue,
+        path: NavigationEnums.onBoardView.routeName,
         builder: (context, state) => const OnBoardView()),
     GoRoute(
-        path: NavigationEnums.onBoardSubView.rawValue,
+        path: NavigationEnums.onBoardSubView.routeName,
         builder: (context, state) => const OnBoardSubView()),
-    GoRoute(path: NavigationEnums.homeView.rawValue, builder: (context, state) => const HomeView()),
     GoRoute(
-        name: NavigationEnums.homeExploreView.rawValue,
-        path: '${NavigationEnums.homeExploreView.rawValue}/:horoscopeSign',
+        path: NavigationEnums.homeView.routeName, builder: (context, state) => const HomeView()),
+    GoRoute(
+        name: NavigationEnums.homeExploreView.routeName,
+        path: '${NavigationEnums.homeExploreView.routeName}/:horoscopeSign',
         builder: (context, state) => HomeExploreView(horoscopeSign: state.params['horoscopeSign']!))
   ]);
 }

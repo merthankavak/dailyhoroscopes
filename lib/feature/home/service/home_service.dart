@@ -1,8 +1,8 @@
 import 'package:vexana/vexana.dart';
 
 import '../../../../product/constants/enum/horoscope_query_enums.dart';
-import '../../../../product/constants/enum/network_routes_enum.dart';
 import '../../../../product/model/horoscope_query_model.dart';
+import '../../../product/constants/enum/network_routes_enum.dart';
 import '../../../product/utility/service_helper.dart';
 import '../model/home_model.dart';
 import 'home_service_interface.dart';
@@ -12,11 +12,11 @@ class HomeService extends IHomeService with ServiceHelper {
 
   @override
   Future<HomeModel?> fetchHoroscope(HoroscopeQueryModel horoscopeQueryModel) async {
-    final response = await manager.send<HomeModel, HomeModel>(NetworkRoutes.empty.rawValue,
+    final response = await manager.send<HomeModel, HomeModel>(NetworkRoutesEnum.empty.routeName,
         parseModel: HomeModel(),
         queryParameters: {
-          HoroscopeQueryEnum.sign.rawValue: horoscopeQueryModel.sign,
-          HoroscopeQueryEnum.day.rawValue: horoscopeQueryModel.day
+          HoroscopeQueryEnum.sign.query: horoscopeQueryModel.sign,
+          HoroscopeQueryEnum.day.query: horoscopeQueryModel.day
         },
         method: RequestType.POST);
     showMessage(scaffoldKey, response.error);

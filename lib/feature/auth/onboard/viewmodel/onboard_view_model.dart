@@ -11,7 +11,6 @@ import 'package:mobx/mobx.dart';
 
 import '../../../../core/base/viewmodel/base_view_model.dart';
 import '../../../../core/constants/enums/navigation_enums.dart';
-import '../../../../core/extension/navigation_extension.dart';
 import '../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../product/constants/image/svg_image_path.dart';
 import '../model/onboard_model.dart';
@@ -81,9 +80,9 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
       await cacheManager.init();
       await cacheManager.putItem(CacheConstants.appCache, appCacheModel!);
     }
-    navigation.router.go(NavigationEnums.homeView.rawValue);
+    navigation.router.go(NavigationEnums.homeView.routeName);
     _changeLoading();
   }
 
-  void completeToOnBoard() => navigation.router.go(NavigationEnums.onBoardSubView.rawValue);
+  void completeToOnBoard() => navigation.router.go(NavigationEnums.onBoardSubView.routeName);
 }
