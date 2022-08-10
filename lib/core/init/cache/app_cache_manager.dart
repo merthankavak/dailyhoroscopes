@@ -5,7 +5,7 @@ import '../../constants/cache/cache_constants.dart';
 import 'cache_manager_interface.dart';
 
 class AppCacheManager extends CacheManagerInterface<AppCacheModel> {
-  AppCacheManager(super.boxName);
+  AppCacheManager(super.key);
 
   @override
   Future<void> addAllItems(List<AppCacheModel> items) async => await box?.addAll(items);
@@ -20,7 +20,7 @@ class AppCacheManager extends CacheManagerInterface<AppCacheModel> {
   Future<void> deleteAtItem(int index) async => await box?.deleteAt(index);
 
   @override
-  Future<void> deleteItem(String boxName) async => await box?.delete(boxName);
+  Future<void> deleteItem(String key) async => await box?.delete(key);
 
   @override
   List<AppCacheModel>? getAllItems() => box?.values.toList();
@@ -29,7 +29,7 @@ class AppCacheManager extends CacheManagerInterface<AppCacheModel> {
   AppCacheModel? getAtItem(int index) => box?.getAt(index);
 
   @override
-  AppCacheModel? getItem(String boxName) => box?.get(boxName);
+  AppCacheModel? getItem(String key) => box?.get(key);
 
   @override
   Future<void> putAllItems(List<AppCacheModel> items) async =>
@@ -39,7 +39,7 @@ class AppCacheManager extends CacheManagerInterface<AppCacheModel> {
   Future<void> putAtItem(int index, AppCacheModel item) async => await box?.putAt(index, item);
 
   @override
-  Future<void> putItem(String boxName, AppCacheModel item) async => await box?.put(boxName, item);
+  Future<void> putItem(String key, AppCacheModel item) async => await box?.put(key, item);
 
   @override
   Future<void> clear() async => await box!.clear();

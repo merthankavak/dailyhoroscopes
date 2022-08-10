@@ -20,7 +20,8 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
   void setContext(BuildContext context) => baseContext = context;
 
   late final CacheManagerInterface<AppCacheModel> cacheManager;
-  AppCacheModel? appCacheModel;
+
+  List<AppCacheModel>? appCacheModelList;
 
   @observable
   bool? isFirstOpen;
@@ -40,8 +41,12 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
 
   Future<void> getUserData() async {
     await cacheManager.init();
-    appCacheModel = cacheManager.getItem(CacheConstants.appCache);
-    appCacheModel != null ? isFirstOpen = appCacheModel!.isFirstInit : isFirstOpen = true;
+    appCacheModelList = cacheManager.getAllItems();
+    if (appCacheModelList!.isNotNullOrEmpty) {
+      isFirstOpen = appCacheModelList!.first.isFirstInit;
+    } else {
+      isFirstOpen = true;
+    }
   }
 
   Future<void> checkIsFirstOpen(Duration duration) async {

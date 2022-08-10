@@ -1,25 +1,29 @@
-class HoroscopeInfoModel {
-  final String signName;
+enum HoroscopeInfo {
+  capricorn('capricorn', 0),
+  aquarius('aquarius', 22),
+  pisces('pisces', 20),
+  aries('aries', 21),
+  taurus('taurus', 21),
+  gemini('gemini', 22),
+  cancer('cancer', 23),
+  leo('leo', 23),
+  virgo('virgo', 23),
+  libra('libra', 23),
+  scorpio('scorpio', 23),
+  sagittarius('sagittarius', 22),
+  capricorn2('capricorn', 22);
 
-  HoroscopeInfoModel(this.signName);
-}
+  final String name;
+  final int day;
+  const HoroscopeInfo(this.name, this.day);
 
-class HoroscopeInfoModels {
-  static final List<HoroscopeInfoModel> horoscopeInfoModels = [
-    HoroscopeInfoModel('capricorn'),
-    HoroscopeInfoModel('aquarius'),
-    HoroscopeInfoModel('pisces'),
-    HoroscopeInfoModel('aries'),
-    HoroscopeInfoModel('taurus'),
-    HoroscopeInfoModel('gemini'),
-    HoroscopeInfoModel('cancer'),
-    HoroscopeInfoModel('leo'),
-    HoroscopeInfoModel('virgo'),
-    HoroscopeInfoModel('libra'),
-    HoroscopeInfoModel('scorpio'),
-    HoroscopeInfoModel('sagittarius'),
-    HoroscopeInfoModel('capricorn'),
-  ];
+  static List<String> get horoscopeNames => HoroscopeInfo.values.map((e) => e.name).toList();
+  static List<int> get horoscopeDays => HoroscopeInfo.values.map((e) => e.day).toList();
 
-  static final List<int> signDays = [0, 22, 20, 21, 21, 22, 23, 23, 23, 23, 23, 22, 22];
+  static String getZodiacSign(String birthDate) {
+    return int.parse(birthDate.split("/")[0]) <
+            HoroscopeInfo.horoscopeDays[int.parse(birthDate.split("/")[1])]
+        ? HoroscopeInfo.horoscopeNames[int.parse(birthDate.split("/")[1]) - 1]
+        : HoroscopeInfo.horoscopeNames[int.parse(birthDate.split("/")[1])];
+  }
 }

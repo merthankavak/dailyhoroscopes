@@ -10,6 +10,7 @@ import 'package:dailyhoroscopes/core/init/network/connectivity/network_connectiv
 import 'package:dailyhoroscopes/core/init/network/connectivity/network_connectivity_interface.dart';
 import 'package:dailyhoroscopes/feature/home/service/home_service.dart';
 import 'package:dailyhoroscopes/feature/home/service/home_service_interface.dart';
+import 'package:dailyhoroscopes/product/constants/enum/day_enums.dart';
 import 'package:dailyhoroscopes/product/model/app_cache_model.dart';
 import 'package:dailyhoroscopes/product/model/horoscope_query_model.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -37,7 +38,8 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
 
   List<String>? tabBarTitles;
   List<String>? dayNames;
-  List<HoroscopeInfoModel>? horoscopeInfoModelsLang;
+  List<String>? horoscopeInfoList;
+
   AppCacheModel? appCacheModel;
 
   @observable
@@ -55,28 +57,13 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   @observable
   NetworkConnectivityEnums? networkConnectivityEnums;
 
-  String? userSign;
-
   @observable
   int currentIndex = 0;
 
   @override
   void init() {
-    dayNames = ['yesterday', 'today', 'tomorrow'];
-    horoscopeInfoModelsLang = [
-      HoroscopeInfoModel(LocaleKeys.sign_capricorn.tr()),
-      HoroscopeInfoModel(LocaleKeys.sign_aquarius.tr()),
-      HoroscopeInfoModel(LocaleKeys.sign_pisces.tr()),
-      HoroscopeInfoModel(LocaleKeys.sign_aries.tr()),
-      HoroscopeInfoModel(LocaleKeys.sign_taurus.tr()),
-      HoroscopeInfoModel(LocaleKeys.sign_gemini.tr()),
-      HoroscopeInfoModel(LocaleKeys.sign_cancer.tr()),
-      HoroscopeInfoModel(LocaleKeys.sign_leo.tr()),
-      HoroscopeInfoModel(LocaleKeys.sign_virgo.tr()),
-      HoroscopeInfoModel(LocaleKeys.sign_libra.tr()),
-      HoroscopeInfoModel(LocaleKeys.sign_scorpio.tr()),
-      HoroscopeInfoModel(LocaleKeys.sign_sagittarius.tr())
-    ];
+    dayNames = DayEnum.dayNames;
+    horoscopeInfoList = HoroscopeInfo.horoscopeNames;
     tabBarTitles = [
       LocaleKeys.home_tabBar_yesterday.tr(),
       LocaleKeys.home_tabBar_today.tr(),
@@ -85,7 +72,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     homeService = HomeService(networkService.networkManager, scaffoldKey);
     networkConnectivity = NetworkConnectivity();
     cacheManager = AppCacheManager(CacheConstants.appCache);
-    homeStateControl();
+    getDefaultHoroscope();
     networkConnectivity.handleNetworkConnectivity((result) {
       networkConnectivityEnums = result;
       getDefaultHoroscope();
@@ -98,16 +85,13 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   @action
   void _changeFetching() => isFetching = !isFetching;
 
-  Future<void> homeStateControl() async {
-    await cacheManager.init();
-    await getUserData();
-    await getDefaultHoroscope();
-  }
-
+  @action
   Future<void> getDefaultHoroscope() async {
     _changeLoading();
-    homeModel = await homeService
-        .fetchHoroscope(HoroscopeQueryModel(sign: userSign!, day: dayNames!.first));
+    await cacheManager.init();
+    appCacheModel = getUserData();
+    homeModel = await homeService.fetchHoroscope(
+        HoroscopeQueryModel(sign: appCacheModel!.horoscopeSign!, day: dayNames!.first));
     _changeLoading();
   }
 
@@ -121,8 +105,8 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
 
   Future<void> clearData() async {
     _changeLoading();
-    await cacheManager.box!.clear();
-    await cacheManager.addItem(AppCacheModel());
+    await cacheManager.init();
+    await cacheManager.clear();
     navigation.router.go(NavigationEnums.onBoardView.routeName);
     _changeLoading();
   }
@@ -136,12 +120,10 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     await baseContext.setLocale(locale);
   }
 
-  Future<void> getUserData() async {
-    appCacheModel = cacheManager.getItem(CacheConstants.appCache);
-    userSign = appCacheModel!.horoscopeSign!;
+  AppCacheModel? getUserData() {
+    return cacheManager.getItem(CacheConstants.appCache);
   }
 
-  @action
   Future<void> checkFirstTimeInternetConnection() async {
     networkConnectivityEnums = await networkConnectivity.checkNetworkConnectivity();
   }

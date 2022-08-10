@@ -107,10 +107,9 @@ class HomeView extends StatelessWidget {
   ListView buildExploreListView(HomeViewModel viewModel) => ListView.builder(
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
-      itemCount: HoroscopeInfoModels.horoscopeInfoModels.length - 1,
+      itemCount: HoroscopeInfo.horoscopeNames.length - 1,
       itemBuilder: (context, index) => GestureDetector(
-          onTap: () =>
-              viewModel.sendExploreView(HoroscopeInfoModels.horoscopeInfoModels[index].signName),
+          onTap: () => viewModel.sendExploreView(HoroscopeInfo.horoscopeNames[index]),
           child: HoroscopeListCard(index: index, viewModel: viewModel)));
 
   Future<dynamic> alertDialog(HomeViewModel viewModel, BuildContext context) async => showDialog(

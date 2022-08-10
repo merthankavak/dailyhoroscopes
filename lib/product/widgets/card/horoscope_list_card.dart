@@ -1,8 +1,8 @@
-import '../../../feature/home/viewmodel/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../../core/extension/image_extension.dart';
+import '../../../feature/home/viewmodel/home_view_model.dart';
 import '../../model/horoscope_info_model.dart';
 
 class HoroscopeListCard extends StatelessWidget {
@@ -19,10 +19,10 @@ class HoroscopeListCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(HoroscopeInfoModels.horoscopeInfoModels[index].signName.toPNG,
+              Image.asset(HoroscopeInfo.horoscopeNames[index].toPNG,
                   width: context.width * 0.2, height: context.height * 0.1),
               context.emptySizedHeightBoxLow,
-              Text(viewModel.horoscopeInfoModelsLang![index].signName)
+              Text(viewModel.horoscopeInfoList![index])
             ]));
   }
 }

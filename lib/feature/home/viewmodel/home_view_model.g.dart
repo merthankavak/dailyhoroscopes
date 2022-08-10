@@ -90,22 +90,6 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
-  late final _$userSignAtom =
-      Atom(name: '_HomeViewModelBase.userSign', context: context);
-
-  @override
-  String? get userSign {
-    _$userSignAtom.reportRead();
-    return super.userSign;
-  }
-
-  @override
-  set userSign(String? value) {
-    _$userSignAtom.reportWrite(value, super.userSign, () {
-      super.userSign = value;
-    });
-  }
-
   late final _$currentIndexAtom =
       Atom(name: '_HomeViewModelBase.currentIndex', context: context);
 
@@ -120,14 +104,6 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     _$currentIndexAtom.reportWrite(value, super.currentIndex, () {
       super.currentIndex = value;
     });
-  }
-
-  late final _$homeStateControlAsyncAction =
-      AsyncAction('_HomeViewModelBase.homeStateControl', context: context);
-
-  @override
-  Future<void> homeStateControl() {
-    return _$homeStateControlAsyncAction.run(() => super.homeStateControl());
   }
 
   late final _$getDefaultHoroscopeAsyncAction =
@@ -155,24 +131,6 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
   Future<void> changeAppLocale(Locale locale) {
     return _$changeAppLocaleAsyncAction
         .run(() => super.changeAppLocale(locale));
-  }
-
-  late final _$getUserDataAsyncAction =
-      AsyncAction('_HomeViewModelBase.getUserData', context: context);
-
-  @override
-  Future<void> getUserData() {
-    return _$getUserDataAsyncAction.run(() => super.getUserData());
-  }
-
-  late final _$checkFirstTimeInternetConnectionAsyncAction = AsyncAction(
-      '_HomeViewModelBase.checkFirstTimeInternetConnection',
-      context: context);
-
-  @override
-  Future<void> checkFirstTimeInternetConnection() {
-    return _$checkFirstTimeInternetConnectionAsyncAction
-        .run(() => super.checkFirstTimeInternetConnection());
   }
 
   late final _$_HomeViewModelBaseActionController =
@@ -219,7 +177,6 @@ isLoading: ${isLoading},
 isFetching: ${isFetching},
 homeModel: ${homeModel},
 networkConnectivityEnums: ${networkConnectivityEnums},
-userSign: ${userSign},
 currentIndex: ${currentIndex}
     ''';
   }

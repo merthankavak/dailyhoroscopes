@@ -1,10 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:dailyhoroscopes/core/constants/cache/cache_constants.dart';
-import 'package:dailyhoroscopes/core/extension/string_extension.dart';
 import 'package:dailyhoroscopes/core/init/cache/app_cache_manager.dart';
 import 'package:dailyhoroscopes/core/init/cache/cache_manager_interface.dart';
 import 'package:dailyhoroscopes/product/model/app_cache_model.dart';
+import 'package:dailyhoroscopes/product/model/horoscope_info_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -30,8 +30,9 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
 
   late final CacheManagerInterface<AppCacheModel> cacheManager;
 
-  AppCacheModel? appCacheModel;
   List<OnBoardModel> onBoardItems = [];
+
+  AppCacheModel? appCacheModel;
 
   @observable
   bool isLoading = false;
@@ -76,7 +77,7 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
           name: nameTextFieldController!.text,
           birthDate: dateTextFieldController!.text,
           isFirstInit: false,
-          horoscopeSign: dateTextFieldController!.text.getZodiacSignName);
+          horoscopeSign: HoroscopeInfo.getZodiacSign(dateTextFieldController!.text));
       await cacheManager.init();
       await cacheManager.putItem(CacheConstants.appCache, appCacheModel!);
     }
