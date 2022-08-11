@@ -5,7 +5,6 @@ import 'package:dailyhoroscopes/core/constants/enums/network_connectivity_enums.
 import 'package:dailyhoroscopes/core/init/cache/app_cache_manager.dart';
 import 'package:dailyhoroscopes/core/init/cache/cache_manager_interface.dart';
 import 'package:dailyhoroscopes/core/init/lang/language_manager.dart';
-import 'package:dailyhoroscopes/core/init/lang/locale_keys.g.dart';
 import 'package:dailyhoroscopes/core/init/network/connectivity/network_connectivity.dart';
 import 'package:dailyhoroscopes/core/init/network/connectivity/network_connectivity_interface.dart';
 import 'package:dailyhoroscopes/feature/home/service/home_service.dart';
@@ -19,7 +18,7 @@ import 'package:mobx/mobx.dart';
 
 import '../../../../core/base/viewmodel/base_view_model.dart';
 import '../../../core/constants/cache/cache_constants.dart';
-import '../../../product/model/horoscope_info_model.dart';
+import '../../../product/constants/enum/horoscope_info_enums.dart';
 import '../model/home_model.dart';
 
 part 'home_view_model.g.dart';
@@ -31,14 +30,21 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   void setContext(BuildContext context) => baseContext = context;
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  GlobalKey<ScaffoldState> exploreScaffoldKey = GlobalKey();
 
   late IHomeService homeService;
   late CacheManagerInterface<AppCacheModel> cacheManager;
   late NetworkConnectivityInterface networkConnectivity;
 
+  @observable
   List<String>? tabBarTitles;
-  List<String>? dayNames;
-  List<String>? horoscopeInfoList;
+
+  List<String>? dayNamesForNetwork;
+
+  @observable
+  List<String>? horoscopeNames;
+
+  List<String>? horoscopeNamesForNetwork;
 
   AppCacheModel? appCacheModel;
 
@@ -62,16 +68,14 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {
-    dayNames = DayEnum.dayNames;
-    horoscopeInfoList = HoroscopeInfo.horoscopeNames;
-    tabBarTitles = [
-      LocaleKeys.home_tabBar_yesterday.tr(),
-      LocaleKeys.home_tabBar_today.tr(),
-      LocaleKeys.home_tabBar_tomorrow.tr()
-    ];
+    dayNamesForNetwork = DayEnum.dayNamesForNetwork;
+    horoscopeNames = HoroscopeInfo.horoscopeNames;
+    horoscopeNamesForNetwork = HoroscopeInfo.horoscopeNamesForNetwork;
+    tabBarTitles = DayEnum.dayNames;
     homeService = HomeService(networkService.networkManager, scaffoldKey);
     networkConnectivity = NetworkConnectivity();
     cacheManager = AppCacheManager(CacheConstants.appCache);
+    checkFirstTimeInternetConnection();
     getDefaultHoroscope();
     networkConnectivity.handleNetworkConnectivity((result) {
       networkConnectivityEnums = result;
@@ -91,15 +95,15 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     await cacheManager.init();
     appCacheModel = getUserData();
     homeModel = await homeService.fetchHoroscope(
-        HoroscopeQueryModel(sign: appCacheModel!.horoscopeSign!, day: dayNames!.first));
+        HoroscopeQueryModel(sign: appCacheModel?.horoscopeSign!, day: dayNamesForNetwork?.first));
     _changeLoading();
   }
 
   @action
   Future<void> getSpecificHoroscope(String horoscopeSign) async {
     _changeFetching();
-    homeModel = await homeService
-        .fetchHoroscope(HoroscopeQueryModel(sign: horoscopeSign, day: dayNames![currentIndex]));
+    homeModel = await homeService.fetchHoroscope(
+        HoroscopeQueryModel(sign: horoscopeSign, day: dayNamesForNetwork![currentIndex]));
     _changeFetching();
   }
 
@@ -116,20 +120,27 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
 
   @action
   Future<void> changeAppLocale(Locale locale) async {
+    _changeLoading();
     appLocale = locale;
     await baseContext.setLocale(locale);
+    tabBarTitles = DayEnum.dayNames;
+    horoscopeNames = HoroscopeInfo.horoscopeNames;
+    _changeLoading();
   }
 
   AppCacheModel? getUserData() {
     return cacheManager.getItem(CacheConstants.appCache);
   }
 
+  @observable
   Future<void> checkFirstTimeInternetConnection() async {
     networkConnectivityEnums = await networkConnectivity.checkNetworkConnectivity();
   }
 
-  void sendExploreView(String horoscopeSign) {
-    navigation.router.goNamed(NavigationEnums.homeExploreView.routeName,
-        params: {'horoscopeSign': horoscopeSign});
+  void sendExploreView(String horoscopeSign, String horoscopeSignForNetwork) {
+    navigation.router.goNamed(NavigationEnums.homeExploreView.routeName, params: {
+      'horoscopeSign': horoscopeSign,
+      'horoscopeSignForNetwork': horoscopeSignForNetwork
+    });
   }
 }

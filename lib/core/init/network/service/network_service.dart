@@ -10,9 +10,11 @@ class NetworkService {
   NetworkService._init();
 
   static const String _baseUrl = 'https://aztro.sameerkumar.website/';
+  static const int _timeout = 30000;
 
   final INetworkManager networkManager = NetworkManager(
     fileManager: LocalFile(),
-    options: BaseOptions(baseUrl: _baseUrl, followRedirects: true),
+    options: BaseOptions(
+        baseUrl: _baseUrl, followRedirects: false, receiveTimeout: _timeout, sendTimeout: _timeout),
   );
 }

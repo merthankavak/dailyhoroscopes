@@ -3,7 +3,7 @@ import 'package:kartal/kartal.dart';
 
 import '../../../core/extension/image_extension.dart';
 import '../../../feature/home/viewmodel/home_view_model.dart';
-import '../../model/horoscope_info_model.dart';
+import '../../constants/enum/horoscope_info_enums.dart';
 
 class HoroscopeListCard extends StatelessWidget {
   final HomeViewModel viewModel;
@@ -19,10 +19,10 @@ class HoroscopeListCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(HoroscopeInfo.horoscopeNames[index].toPNG,
+              Image.asset(HoroscopeInfo.horoscopeNamesForNetwork[index].toPNG,
                   width: context.width * 0.2, height: context.height * 0.1),
               context.emptySizedHeightBoxLow,
-              Text(viewModel.horoscopeInfoList![index])
+              Text(viewModel.horoscopeNames![index])
             ]));
   }
 }

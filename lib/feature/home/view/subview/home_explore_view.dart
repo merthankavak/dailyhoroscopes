@@ -3,14 +3,20 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../../../core/base/view/base_view.dart';
+import '../../../../core/components/card/no_network_card.dart';
 import '../../../../core/components/indicator/loading_indicator.dart';
 import '../../../../core/constants/enums/navigation_enums.dart';
+import '../../../../core/constants/enums/network_connectivity_enums.dart';
 import '../../../../product/widgets/card/horoscope_detail_card.dart';
 import '../../viewmodel/home_view_model.dart';
 
 class HomeExploreView extends StatelessWidget {
   final String horoscopeSign;
-  const HomeExploreView({Key? key, required this.horoscopeSign}) : super(key: key);
+  final String horoscopeSignForNetwork;
+
+  const HomeExploreView(
+      {Key? key, required this.horoscopeSign, required this.horoscopeSignForNetwork})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +33,12 @@ class HomeExploreView extends StatelessWidget {
                 key: viewModel.scaffoldKey,
                 appBar: buildAppBar(viewModel),
                 body: Observer(
-                    builder: (_) => viewModel.isLoading
-                        ? const LoadingIndicator()
-                        : buildSingleChildScrollView(context, viewModel)))));
+                    builder: (_) =>
+                        viewModel.networkConnectivityEnums == NetworkConnectivityEnums.off
+                            ? const NoNetworkCard()
+                            : viewModel.isLoading || viewModel.homeModel == null
+                                ? const LoadingIndicator()
+                                : buildSingleChildScrollView(context, viewModel)))));
   }
 
   AppBar buildAppBar(HomeViewModel viewModel) => AppBar(
@@ -55,13 +64,13 @@ class HomeExploreView extends StatelessWidget {
   Observer buildObserverCard(HomeViewModel viewModel, BuildContext context) => Observer(
       builder: (_) => viewModel.isFetching
           ? SizedBox(height: context.height * 0.4, child: const LoadingIndicator())
-          : HoroscopeDetailCard(viewModel: viewModel, horoscopeSign: horoscopeSign));
+          : HoroscopeDetailCard(viewModel: viewModel, horoscopeSign: horoscopeSignForNetwork));
 
   TabBar buildTabBar(HomeViewModel viewModel) => TabBar(
       physics: const NeverScrollableScrollPhysics(),
       onTap: (value) {
         viewModel.changeTabIndex(value);
-        viewModel.getSpecificHoroscope(horoscopeSign);
+        viewModel.getSpecificHoroscope(horoscopeSignForNetwork);
       },
       tabs: viewModel.tabBarTitles!.map((title) => Tab(text: title)).toList());
 }

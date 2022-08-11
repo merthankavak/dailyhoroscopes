@@ -63,19 +63,13 @@ class HoroscopeDetailCard extends StatelessWidget {
       Text(LocaleKeys.home_compatibility.tr(), style: context.textTheme.caption),
       context.emptySizedHeightBoxLow3x,
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Column(children: [
-          Image.asset(horoscopeSign.toPNG,
-              width: context.width * 0.2, height: context.height * 0.1),
-          context.emptySizedHeightBoxLow,
-          Text(horoscopeSign.toCapitalized(), style: context.textTheme.bodySmall!)
-        ]),
+        Image.asset(horoscopeSign.toLowerCase().toPNG,
+            width: context.width * 0.2, height: context.height * 0.1),
+        context.emptySizedHeightBoxLow,
         const Icon(Icons.compare_arrows_sharp),
-        Column(children: [
-          Image.asset(viewModel.homeModel!.compatibility!.toLowerCase().toPNG,
-              width: context.width * 0.2, height: context.height * 0.1),
-          context.emptySizedHeightBoxLow,
-          Text(viewModel.homeModel!.compatibility!, style: context.textTheme.bodySmall!)
-        ])
+        Image.asset(viewModel.homeModel!.compatibility!.toLowerCase().toPNG,
+            width: context.width * 0.2, height: context.height * 0.1),
+        context.emptySizedHeightBoxLow
       ])
     ]);
   }

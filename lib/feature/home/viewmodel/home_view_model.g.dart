@@ -9,6 +9,38 @@ part of 'home_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$HomeViewModel on _HomeViewModelBase, Store {
+  late final _$tabBarTitlesAtom =
+      Atom(name: '_HomeViewModelBase.tabBarTitles', context: context);
+
+  @override
+  List<String>? get tabBarTitles {
+    _$tabBarTitlesAtom.reportRead();
+    return super.tabBarTitles;
+  }
+
+  @override
+  set tabBarTitles(List<String>? value) {
+    _$tabBarTitlesAtom.reportWrite(value, super.tabBarTitles, () {
+      super.tabBarTitles = value;
+    });
+  }
+
+  late final _$horoscopeNamesAtom =
+      Atom(name: '_HomeViewModelBase.horoscopeNames', context: context);
+
+  @override
+  List<String>? get horoscopeNames {
+    _$horoscopeNamesAtom.reportRead();
+    return super.horoscopeNames;
+  }
+
+  @override
+  set horoscopeNames(List<String>? value) {
+    _$horoscopeNamesAtom.reportWrite(value, super.horoscopeNames, () {
+      super.horoscopeNames = value;
+    });
+  }
+
   late final _$appLocaleAtom =
       Atom(name: '_HomeViewModelBase.appLocale', context: context);
 
@@ -106,6 +138,12 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  @override
+  ObservableFuture<void> checkFirstTimeInternetConnection() {
+    final _$future = super.checkFirstTimeInternetConnection();
+    return ObservableFuture<void>(_$future, context: context);
+  }
+
   late final _$getDefaultHoroscopeAsyncAction =
       AsyncAction('_HomeViewModelBase.getDefaultHoroscope', context: context);
 
@@ -172,6 +210,8 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
   @override
   String toString() {
     return '''
+tabBarTitles: ${tabBarTitles},
+horoscopeNames: ${horoscopeNames},
 appLocale: ${appLocale},
 isLoading: ${isLoading},
 isFetching: ${isFetching},

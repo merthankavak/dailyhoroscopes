@@ -6,10 +6,10 @@ import 'package:kartal/kartal.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/components/indicator/loading_indicator.dart';
 import '../../../../core/init/lang/locale_keys.g.dart';
-import '../../../../product/model/horoscope_info_model.dart';
 import '../../../core/components/card/no_network_card.dart';
 import '../../../core/constants/enums/network_connectivity_enums.dart';
 import '../../../core/init/lang/language_manager.dart';
+import '../../../product/constants/enum/horoscope_info_enums.dart';
 import '../../../product/widgets/card/home_welcome_card.dart';
 import '../../../product/widgets/card/horoscope_detail_card.dart';
 import '../../../product/widgets/card/horoscope_list_card.dart';
@@ -36,11 +36,9 @@ class HomeView extends StatelessWidget {
                     builder: (_) =>
                         viewModel.networkConnectivityEnums == NetworkConnectivityEnums.off
                             ? const NoNetworkCard()
-                            : viewModel.isLoading
+                            : viewModel.isLoading || viewModel.homeModel == null
                                 ? const LoadingIndicator()
-                                : viewModel.homeModel == null
-                                    ? Center(child: Text(LocaleKeys.notFound.tr()))
-                                    : buildSingleChildScrollView(context, viewModel)))));
+                                : buildSingleChildScrollView(context, viewModel)))));
   }
 
   AppBar buildAppBar(HomeViewModel viewModel, BuildContext context) =>
@@ -83,7 +81,9 @@ class HomeView extends StatelessWidget {
       builder: (_) => viewModel.isFetching
           ? SizedBox(height: context.height * 0.4, child: const LoadingIndicator())
           : HoroscopeDetailCard(
-              viewModel: viewModel, horoscopeSign: viewModel.appCacheModel!.horoscopeSign!));
+              viewModel: viewModel,
+              horoscopeSign: viewModel.appCacheModel!.horoscopeSign!,
+            ));
 
   Future<void> showPicker(HomeViewModel viewModel, BuildContext context) async =>
       showModalBottomSheet(
@@ -94,13 +94,13 @@ class HomeView extends StatelessWidget {
                     title: Text(LanguageManager.instance.enLocale.languageCode.toUpperCase()),
                     onTap: () {
                       viewModel.changeAppLocale(LanguageManager.instance.enLocale);
-                      Navigator.of(context).pop();
+                      context.pop();
                     }),
                 ListTile(
                     title: Text(LanguageManager.instance.trLocale.languageCode.toUpperCase()),
                     onTap: () {
                       viewModel.changeAppLocale(LanguageManager.instance.trLocale);
-                      Navigator.of(context).pop();
+                      context.pop();
                     })
               ])));
 
@@ -109,7 +109,8 @@ class HomeView extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: HoroscopeInfo.horoscopeNames.length - 1,
       itemBuilder: (context, index) => GestureDetector(
-          onTap: () => viewModel.sendExploreView(HoroscopeInfo.horoscopeNames[index]),
+          onTap: () => viewModel.sendExploreView(
+              HoroscopeInfo.horoscopeNames[index], HoroscopeInfo.horoscopeNamesForNetwork[index]),
           child: HoroscopeListCard(index: index, viewModel: viewModel)));
 
   Future<dynamic> alertDialog(HomeViewModel viewModel, BuildContext context) async => showDialog(

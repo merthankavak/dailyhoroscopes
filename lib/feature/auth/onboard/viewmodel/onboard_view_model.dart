@@ -4,7 +4,7 @@ import 'package:dailyhoroscopes/core/constants/cache/cache_constants.dart';
 import 'package:dailyhoroscopes/core/init/cache/app_cache_manager.dart';
 import 'package:dailyhoroscopes/core/init/cache/cache_manager_interface.dart';
 import 'package:dailyhoroscopes/product/model/app_cache_model.dart';
-import 'package:dailyhoroscopes/product/model/horoscope_info_model.dart';
+import 'package:dailyhoroscopes/product/constants/enum/horoscope_info_enums.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';

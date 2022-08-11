@@ -30,7 +30,11 @@ class NavigationService {
         path: NavigationEnums.homeView.routeName, builder: (context, state) => const HomeView()),
     GoRoute(
         name: NavigationEnums.homeExploreView.routeName,
-        path: '${NavigationEnums.homeExploreView.routeName}/:horoscopeSign',
-        builder: (context, state) => HomeExploreView(horoscopeSign: state.params['horoscopeSign']!))
+        path:
+            '${NavigationEnums.homeExploreView.routeName}/:horoscopeSign/:horoscopeSignForNetwork',
+        builder: (context, state) => HomeExploreView(
+              horoscopeSign: state.params['horoscopeSign']!,
+              horoscopeSignForNetwork: state.params['horoscopeSignForNetwork']!,
+            ))
   ]);
 }

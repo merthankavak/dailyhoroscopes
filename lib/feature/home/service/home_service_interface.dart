@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vexana/vexana.dart';
 
-import '../../../../product/model/horoscope_query_model.dart';
+import '../../../product/model/horoscope_query_model.dart';
 import '../model/home_model.dart';
 
 abstract class IHomeService {

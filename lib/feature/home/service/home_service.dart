@@ -19,7 +19,12 @@ class HomeService extends IHomeService with ServiceHelper {
           HoroscopeQueryEnum.day.query: horoscopeQueryModel.day
         },
         method: RequestType.POST);
-    showMessage(scaffoldKey, response.error);
+    if (response.error?.statusCode == 400) {
+      return null;
+    } else {
+      showMessage(scaffoldKey, response.error);
+    }
+
     return response.data;
   }
 }
