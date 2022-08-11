@@ -10,6 +10,7 @@ It is a flutter application where you can follow daily horoscope information.
 - Cache Management with [Hive](https://pub.dev/packages/hive_flutter)
 - Network with [Vexana](https://pub.dev/packages/vexana)
 - Localization with [EasyLocalization](https://pub.dev/packages/easy_localization)
+- Connectivity with [Connectivity Plus](https://pub.dev/packages/connectivity_plus)
 
 
 ## Horoscope API
