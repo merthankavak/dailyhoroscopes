@@ -131,7 +131,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     return cacheManager.getItem(CacheConstants.appCache);
   }
 
-  @observable
+  @action
   Future<void> checkFirstTimeInternetConnection() async {
     networkConnectivityEnums = await networkConnectivity.checkNetworkConnectivity();
   }

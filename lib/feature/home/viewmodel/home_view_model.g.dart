@@ -138,12 +138,6 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
-  @override
-  ObservableFuture<void> checkFirstTimeInternetConnection() {
-    final _$future = super.checkFirstTimeInternetConnection();
-    return ObservableFuture<void>(_$future, context: context);
-  }
-
   late final _$getDefaultHoroscopeAsyncAction =
       AsyncAction('_HomeViewModelBase.getDefaultHoroscope', context: context);
 
@@ -169,6 +163,16 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
   Future<void> changeAppLocale(Locale locale) {
     return _$changeAppLocaleAsyncAction
         .run(() => super.changeAppLocale(locale));
+  }
+
+  late final _$checkFirstTimeInternetConnectionAsyncAction = AsyncAction(
+      '_HomeViewModelBase.checkFirstTimeInternetConnection',
+      context: context);
+
+  @override
+  Future<void> checkFirstTimeInternetConnection() {
+    return _$checkFirstTimeInternetConnectionAsyncAction
+        .run(() => super.checkFirstTimeInternetConnection());
   }
 
   late final _$_HomeViewModelBaseActionController =
