@@ -89,19 +89,19 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
-  late final _$homeModelAtom =
-      Atom(name: '_HomeViewModelBase.homeModel', context: context);
+  late final _$homeResponseModelAtom =
+      Atom(name: '_HomeViewModelBase.homeResponseModel', context: context);
 
   @override
-  HomeModel? get homeModel {
-    _$homeModelAtom.reportRead();
-    return super.homeModel;
+  HomeResponseModel? get homeResponseModel {
+    _$homeResponseModelAtom.reportRead();
+    return super.homeResponseModel;
   }
 
   @override
-  set homeModel(HomeModel? value) {
-    _$homeModelAtom.reportWrite(value, super.homeModel, () {
-      super.homeModel = value;
+  set homeResponseModel(HomeResponseModel? value) {
+    _$homeResponseModelAtom.reportWrite(value, super.homeResponseModel, () {
+      super.homeResponseModel = value;
     });
   }
 
@@ -215,7 +215,7 @@ horoscopeNames: ${horoscopeNames},
 appLocale: ${appLocale},
 isLoading: ${isLoading},
 isFetching: ${isFetching},
-homeModel: ${homeModel},
+homeResponseModel: ${homeResponseModel},
 networkConnectivityEnums: ${networkConnectivityEnums},
 currentIndex: ${currentIndex}
     ''';

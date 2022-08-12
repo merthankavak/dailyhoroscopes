@@ -7,11 +7,11 @@ import 'package:dailyhoroscopes/core/init/cache/cache_manager_interface.dart';
 import 'package:dailyhoroscopes/core/init/lang/language_manager.dart';
 import 'package:dailyhoroscopes/core/init/network/connectivity/network_connectivity.dart';
 import 'package:dailyhoroscopes/core/init/network/connectivity/network_connectivity_interface.dart';
+import 'package:dailyhoroscopes/feature/home/model/home_model.dart';
 import 'package:dailyhoroscopes/feature/home/service/home_service.dart';
 import 'package:dailyhoroscopes/feature/home/service/home_service_interface.dart';
 import 'package:dailyhoroscopes/product/constants/enum/day_enums.dart';
 import 'package:dailyhoroscopes/product/model/app_cache_model.dart';
-import 'package:dailyhoroscopes/product/model/horoscope_query_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -19,7 +19,7 @@ import 'package:mobx/mobx.dart';
 import '../../../../core/base/viewmodel/base_view_model.dart';
 import '../../../core/constants/cache/cache_constants.dart';
 import '../../../product/constants/enum/horoscope_info_enums.dart';
-import '../model/home_model.dart';
+import '../model/home_response_model.dart';
 
 part 'home_view_model.g.dart';
 
@@ -58,7 +58,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   bool isFetching = false;
 
   @observable
-  HomeModel? homeModel;
+  HomeResponseModel? homeResponseModel;
 
   @observable
   NetworkConnectivityEnums? networkConnectivityEnums;
@@ -76,7 +76,6 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     networkConnectivity = NetworkConnectivity();
     cacheManager = AppCacheManager(CacheConstants.appCache);
     checkFirstTimeInternetConnection();
-    getDefaultHoroscope();
     networkConnectivity.handleNetworkConnectivity((result) {
       networkConnectivityEnums = result;
       getDefaultHoroscope();
@@ -94,16 +93,16 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     _changeLoading();
     await cacheManager.init();
     appCacheModel = getUserData();
-    homeModel = await homeService.fetchHoroscope(
-        HoroscopeQueryModel(sign: appCacheModel?.horoscopeSign!, day: dayNamesForNetwork?.first));
+    homeResponseModel = await homeService.fetchHoroscope(
+        HomeModel(sign: appCacheModel?.horoscopeSign!, day: dayNamesForNetwork?.first));
     _changeLoading();
   }
 
   @action
   Future<void> getSpecificHoroscope(String horoscopeSign) async {
     _changeFetching();
-    homeModel = await homeService.fetchHoroscope(
-        HoroscopeQueryModel(sign: horoscopeSign, day: dayNamesForNetwork![currentIndex]));
+    homeResponseModel = await homeService
+        .fetchHoroscope(HomeModel(sign: horoscopeSign, day: dayNamesForNetwork![currentIndex]));
     _changeFetching();
   }
 

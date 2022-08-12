@@ -26,6 +26,7 @@ class HomeView extends StatelessWidget {
         onModelReady: (model) {
           model.setContext(context);
           model.init();
+          model.getDefaultHoroscope();
         },
         onPageBuilder: (BuildContext context, HomeViewModel viewModel) => DefaultTabController(
             length: viewModel.tabBarTitles!.length,
@@ -36,7 +37,7 @@ class HomeView extends StatelessWidget {
                     builder: (_) =>
                         viewModel.networkConnectivityEnums == NetworkConnectivityEnums.off
                             ? const NoNetworkCard()
-                            : viewModel.isLoading || viewModel.homeModel == null
+                            : viewModel.isLoading || viewModel.homeResponseModel == null
                                 ? const LoadingIndicator()
                                 : buildSingleChildScrollView(context, viewModel)))));
   }
@@ -58,7 +59,9 @@ class HomeView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    HomeWelcomeCard(viewModel: viewModel),
+                    HomeWelcomeCard(
+                        homeResponseModel: viewModel.homeResponseModel!,
+                        appCacheModel: viewModel.appCacheModel!),
                     context.emptySizedHeightBoxLow,
                     SizedBox(height: context.height * 0.1, child: buildTabBar(viewModel)),
                     context.emptySizedHeightBoxLow,
@@ -81,7 +84,7 @@ class HomeView extends StatelessWidget {
       builder: (_) => viewModel.isFetching
           ? SizedBox(height: context.height * 0.4, child: const LoadingIndicator())
           : HoroscopeDetailCard(
-              viewModel: viewModel,
+              homeResponseModel: viewModel.homeResponseModel!,
               horoscopeSign: viewModel.appCacheModel!.horoscopeSign!,
             ));
 

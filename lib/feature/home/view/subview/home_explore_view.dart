@@ -25,7 +25,7 @@ class HomeExploreView extends StatelessWidget {
         onModelReady: (model) {
           model.setContext(context);
           model.init();
-          model.getSpecificHoroscope(horoscopeSign);
+          model.getSpecificHoroscope(horoscopeSignForNetwork);
         },
         onPageBuilder: (BuildContext context, HomeViewModel viewModel) => DefaultTabController(
             length: viewModel.tabBarTitles!.length,
@@ -36,7 +36,7 @@ class HomeExploreView extends StatelessWidget {
                     builder: (_) =>
                         viewModel.networkConnectivityEnums == NetworkConnectivityEnums.off
                             ? const NoNetworkCard()
-                            : viewModel.isLoading || viewModel.homeModel == null
+                            : viewModel.isLoading || viewModel.homeResponseModel == null
                                 ? const LoadingIndicator()
                                 : buildSingleChildScrollView(context, viewModel)))));
   }
@@ -64,7 +64,9 @@ class HomeExploreView extends StatelessWidget {
   Observer buildObserverCard(HomeViewModel viewModel, BuildContext context) => Observer(
       builder: (_) => viewModel.isFetching
           ? SizedBox(height: context.height * 0.4, child: const LoadingIndicator())
-          : HoroscopeDetailCard(viewModel: viewModel, horoscopeSign: horoscopeSignForNetwork));
+          : HoroscopeDetailCard(
+              homeResponseModel: viewModel.homeResponseModel!,
+              horoscopeSign: horoscopeSignForNetwork));
 
   TabBar buildTabBar(HomeViewModel viewModel) => TabBar(
       physics: const NeverScrollableScrollPhysics(),

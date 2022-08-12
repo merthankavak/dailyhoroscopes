@@ -4,11 +4,14 @@ import 'package:kartal/kartal.dart';
 
 import '../../../core/extension/image_extension.dart';
 import '../../../core/init/lang/locale_keys.g.dart';
-import '../../../feature/home/viewmodel/home_view_model.dart';
+import '../../../feature/home/model/home_response_model.dart';
+import '../../model/app_cache_model.dart';
 
 class HomeWelcomeCard extends StatelessWidget {
-  final HomeViewModel viewModel;
-  const HomeWelcomeCard({Key? key, required this.viewModel}) : super(key: key);
+  final HomeResponseModel homeResponseModel;
+  final AppCacheModel appCacheModel;
+  const HomeWelcomeCard({Key? key, required this.homeResponseModel, required this.appCacheModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +29,9 @@ class HomeWelcomeCard extends StatelessWidget {
 
   Column buildHoroscopeSignColumn(BuildContext context) {
     return Column(children: [
-      Image.asset(viewModel.appCacheModel!.horoscopeSign!.toPNG,
+      Image.asset(appCacheModel.horoscopeSign!.toPNG,
           width: context.width * 0.2, height: context.height * 0.1),
-      Text(viewModel.homeModel!.dateRange!,
+      Text(homeResponseModel.dateRange!,
           style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.onBackground))
     ]);
   }
@@ -39,9 +42,9 @@ class HomeWelcomeCard extends StatelessWidget {
       children: [
         buildRichText(context),
         context.emptySizedHeightBoxLow,
-        Text(viewModel.appCacheModel!.birthDate!,
+        Text(appCacheModel.birthDate!,
             style: context.textTheme.caption!.copyWith(color: context.colorScheme.onBackground)),
-        Text(viewModel.appCacheModel!.horoscopeSign!.toCapitalized(),
+        Text(appCacheModel.horoscopeSign!.toCapitalized(),
             style: context.textTheme.caption!.copyWith(color: context.colorScheme.onBackground))
       ],
     );
@@ -54,7 +57,7 @@ class HomeWelcomeCard extends StatelessWidget {
           text: LocaleKeys.home_welcome.tr(),
           style: context.textTheme.subtitle1!.copyWith(color: context.colorScheme.onBackground)),
       TextSpan(
-          text: viewModel.appCacheModel!.name.toCapitalized(),
+          text: appCacheModel.name.toCapitalized(),
           style: context.textTheme.subtitle1!.copyWith(color: context.colorScheme.onPrimary))
     ]));
   }

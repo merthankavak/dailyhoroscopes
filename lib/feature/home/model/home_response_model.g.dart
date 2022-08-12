@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_model.dart';
+part of 'home_response_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => HomeModel(
+HomeResponseModel _$HomeResponseModelFromJson(Map<String, dynamic> json) =>
+    HomeResponseModel(
       dateRange: json['date_range'] as String?,
       currentDate: json['current_date'] as String?,
       description: json['description'] as String?,
@@ -17,7 +18,8 @@ HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => HomeModel(
       luckyTime: json['lucky_time'] as String?,
     );
 
-Map<String, dynamic> _$HomeModelToJson(HomeModel instance) => <String, dynamic>{
+Map<String, dynamic> _$HomeResponseModelToJson(HomeResponseModel instance) =>
+    <String, dynamic>{
       'date_range': instance.dateRange,
       'current_date': instance.currentDate,
       'description': instance.description,

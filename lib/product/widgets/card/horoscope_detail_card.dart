@@ -4,13 +4,14 @@ import 'package:kartal/kartal.dart';
 
 import '../../../core/extension/image_extension.dart';
 import '../../../core/init/lang/locale_keys.g.dart';
-import '../../../feature/home/viewmodel/home_view_model.dart';
+import '../../../feature/home/model/home_response_model.dart';
 
 class HoroscopeDetailCard extends StatelessWidget {
   final String horoscopeSign;
-  final HomeViewModel viewModel;
+  final HomeResponseModel homeResponseModel;
 
-  const HoroscopeDetailCard({super.key, required this.horoscopeSign, required this.viewModel});
+  const HoroscopeDetailCard(
+      {super.key, required this.horoscopeSign, required this.homeResponseModel});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class HoroscopeDetailCard extends StatelessWidget {
         child: Padding(
             padding: context.paddingNormal,
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(viewModel.homeModel!.description!),
+              Text(homeResponseModel.description!),
               context.emptySizedHeightBoxLow3x,
               buildDetailsRow(context),
               context.emptySizedHeightBoxNormal,
@@ -35,24 +36,24 @@ class HoroscopeDetailCard extends StatelessWidget {
         children: [
           Column(
             children: [
-              Text(viewModel.homeModel!.luckyNumber!),
+              Text(homeResponseModel.luckyNumber!),
               Text(LocaleKeys.home_luckyNumber.tr(), style: context.textTheme.caption)
             ],
           ),
           Column(
             children: [
-              Text(viewModel.homeModel!.color!),
+              Text(homeResponseModel.color!),
               Text(LocaleKeys.home_color.tr(), style: context.textTheme.caption)
             ],
           ),
           Column(
             children: [
-              Text(viewModel.homeModel!.luckyTime!),
+              Text(homeResponseModel.luckyTime!),
               Text(LocaleKeys.home_luckyTime.tr(), style: context.textTheme.caption)
             ],
           ),
           Column(children: [
-            Text(viewModel.homeModel!.mood!),
+            Text(homeResponseModel.mood!),
             Text(LocaleKeys.home_mood.tr(), style: context.textTheme.caption)
           ])
         ]);
@@ -67,7 +68,7 @@ class HoroscopeDetailCard extends StatelessWidget {
             width: context.width * 0.2, height: context.height * 0.1),
         context.emptySizedHeightBoxLow,
         const Icon(Icons.compare_arrows_sharp),
-        Image.asset(viewModel.homeModel!.compatibility!.toLowerCase().toPNG,
+        Image.asset(homeResponseModel.compatibility!.toLowerCase().toPNG,
             width: context.width * 0.2, height: context.height * 0.1),
         context.emptySizedHeightBoxLow
       ])

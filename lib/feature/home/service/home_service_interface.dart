@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vexana/vexana.dart';
 
-import '../../../product/model/horoscope_query_model.dart';
 import '../model/home_model.dart';
+import '../model/home_response_model.dart';
 
 abstract class IHomeService {
   final INetworkManager manager;
@@ -10,5 +10,5 @@ abstract class IHomeService {
 
   IHomeService(this.manager, this.scaffoldKey);
 
-  Future<HomeModel?> fetchHoroscope(HoroscopeQueryModel horoscopeQueryModel);
+  Future<HomeResponseModel?> fetchHoroscope(HomeModel homeModel);
 }
