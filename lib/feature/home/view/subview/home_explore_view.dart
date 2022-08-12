@@ -26,6 +26,10 @@ class HomeExploreView extends StatelessWidget {
           model.setContext(context);
           model.init();
           model.getSpecificHoroscope(horoscopeSignForNetwork);
+          model.networkConnectivity.handleNetworkConnectivity((result) {
+            model.networkConnectivityEnums = result;
+            model.getSpecificHoroscope(horoscopeSignForNetwork);
+          });
         },
         onPageBuilder: (BuildContext context, HomeViewModel viewModel) => DefaultTabController(
             length: viewModel.tabBarTitles!.length,

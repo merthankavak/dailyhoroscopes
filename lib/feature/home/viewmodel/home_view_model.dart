@@ -30,7 +30,6 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   void setContext(BuildContext context) => baseContext = context;
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
-  GlobalKey<ScaffoldState> exploreScaffoldKey = GlobalKey();
 
   late IHomeService homeService;
   late CacheManagerInterface<AppCacheModel> cacheManager;
@@ -76,10 +75,6 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     networkConnectivity = NetworkConnectivity();
     cacheManager = AppCacheManager(CacheConstants.appCache);
     checkFirstTimeInternetConnection();
-    networkConnectivity.handleNetworkConnectivity((result) {
-      networkConnectivityEnums = result;
-      getDefaultHoroscope();
-    });
   }
 
   @action
