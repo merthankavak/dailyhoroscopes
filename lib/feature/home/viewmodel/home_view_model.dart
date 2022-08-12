@@ -84,7 +84,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   void _changeFetching() => isFetching = !isFetching;
 
   @action
-  Future<void> getDefaultHoroscope() async {
+  Future<void> getUserHoroscope() async {
     _changeLoading();
     await cacheManager.init();
     appCacheModel = getUserData();

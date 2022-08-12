@@ -34,7 +34,6 @@ class HomeExploreView extends StatelessWidget {
         onPageBuilder: (BuildContext context, HomeViewModel viewModel) => DefaultTabController(
             length: viewModel.tabBarTitles!.length,
             child: Scaffold(
-                key: viewModel.scaffoldKey,
                 appBar: buildAppBar(viewModel),
                 body: Observer(
                     builder: (_) =>

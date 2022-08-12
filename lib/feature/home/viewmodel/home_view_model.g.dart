@@ -138,13 +138,12 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
-  late final _$getDefaultHoroscopeAsyncAction =
-      AsyncAction('_HomeViewModelBase.getDefaultHoroscope', context: context);
+  late final _$getUserHoroscopeAsyncAction =
+      AsyncAction('_HomeViewModelBase.getUserHoroscope', context: context);
 
   @override
-  Future<void> getDefaultHoroscope() {
-    return _$getDefaultHoroscopeAsyncAction
-        .run(() => super.getDefaultHoroscope());
+  Future<void> getUserHoroscope() {
+    return _$getUserHoroscopeAsyncAction.run(() => super.getUserHoroscope());
   }
 
   late final _$getSpecificHoroscopeAsyncAction =

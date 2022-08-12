@@ -22,6 +22,7 @@ class HomeService extends IHomeService with ServiceHelper {
         method: RequestType.POST);
 
     showMessage(scaffoldKey, response.error);
+
     return response.data;
   }
 }

@@ -26,10 +26,10 @@ class HomeView extends StatelessWidget {
         onModelReady: (model) {
           model.setContext(context);
           model.init();
-          model.getDefaultHoroscope();
+          model.getUserHoroscope();
           model.networkConnectivity.handleNetworkConnectivity((result) {
             model.networkConnectivityEnums = result;
-            model.getDefaultHoroscope();
+            model.getUserHoroscope();
           });
         },
         onPageBuilder: (BuildContext context, HomeViewModel viewModel) => DefaultTabController(
