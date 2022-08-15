@@ -34,6 +34,9 @@ dependencies:
   #JSON
   json_annotation: ^4.6.0
 
+  #Core
+  equatable: ^2.0.3
+
   #UI Utitilities
   flutter_svg: ^1.1.1+1
   animated_text_kit: ^4.2.2

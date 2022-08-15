@@ -42,11 +42,9 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
   Future<void> getUserData() async {
     await cacheManager.init();
     appCacheModelList = cacheManager.getAllItems();
-    if (appCacheModelList!.isNotNullOrEmpty) {
-      isFirstOpen = appCacheModelList!.first.isFirstInit;
-    } else {
-      isFirstOpen = true;
-    }
+    appCacheModelList!.isNotNullOrEmpty
+        ? isFirstOpen = appCacheModelList!.first.isFirstInit
+        : isFirstOpen = true;
   }
 
   Future<void> checkIsFirstOpen(Duration duration) async {

@@ -3,8 +3,8 @@
 import 'package:dailyhoroscopes/core/constants/cache/cache_constants.dart';
 import 'package:dailyhoroscopes/core/init/cache/app_cache_manager.dart';
 import 'package:dailyhoroscopes/core/init/cache/cache_manager_interface.dart';
-import 'package:dailyhoroscopes/product/model/app_cache_model.dart';
 import 'package:dailyhoroscopes/product/constants/enum/horoscope_info_enums.dart';
+import 'package:dailyhoroscopes/product/model/app_cache_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -69,18 +69,21 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
   void _changeLoading() => isLoading = !isLoading;
 
   @action
+  Future<void> saveCache() async {
+    appCacheModel = const AppCacheModel().copyWith(
+        id: UniqueKey().hashCode,
+        name: nameTextFieldController!.text,
+        birthDate: dateTextFieldController!.text,
+        isFirstInit: false,
+        horoscopeSign: HoroscopeInfo.getZodiacSign(dateTextFieldController!.text));
+    await cacheManager.init();
+    await cacheManager.putItem(CacheConstants.appCache, appCacheModel!);
+  }
+
+  @action
   Future<void> completeToOnBoardSubView() async {
     _changeLoading();
-    if (formStateOnBoardSubView.currentState!.validate()) {
-      appCacheModel = AppCacheModel(
-          id: UniqueKey().hashCode,
-          name: nameTextFieldController!.text,
-          birthDate: dateTextFieldController!.text,
-          isFirstInit: false,
-          horoscopeSign: HoroscopeInfo.getZodiacSign(dateTextFieldController!.text));
-      await cacheManager.init();
-      await cacheManager.putItem(CacheConstants.appCache, appCacheModel!);
-    }
+    if (formStateOnBoardSubView.currentState!.validate()) await saveCache();
     navigation.router.go(NavigationEnums.homeView.routeName);
     _changeLoading();
   }

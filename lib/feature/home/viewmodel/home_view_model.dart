@@ -122,14 +122,11 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     _changeLoading();
   }
 
-  AppCacheModel? getUserData() {
-    return cacheManager.getItem(CacheConstants.appCache);
-  }
+  AppCacheModel? getUserData() => cacheManager.getItem(CacheConstants.appCache);
 
   @action
-  Future<void> checkFirstTimeInternetConnection() async {
-    networkConnectivityEnums = await networkConnectivity.checkNetworkConnectivity();
-  }
+  Future<void> checkFirstTimeInternetConnection() async =>
+      networkConnectivityEnums = await networkConnectivity.checkNetworkConnectivity();
 
   void sendExploreView(String horoscopeSign, String horoscopeSignForNetwork) {
     navigation.router.goNamed(NavigationEnums.homeExploreView.routeName, params: {

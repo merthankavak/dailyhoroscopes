@@ -49,6 +49,14 @@ mixin _$OnBoardViewModel on _OnBoardViewModelBase, Store {
     });
   }
 
+  late final _$saveCacheAsyncAction =
+      AsyncAction('_OnBoardViewModelBase.saveCache', context: context);
+
+  @override
+  Future<void> saveCache() {
+    return _$saveCacheAsyncAction.run(() => super.saveCache());
+  }
+
   late final _$completeToOnBoardSubViewAsyncAction = AsyncAction(
       '_OnBoardViewModelBase.completeToOnBoardSubView',
       context: context);
