@@ -39,7 +39,7 @@ class HomeExploreView extends StatelessWidget {
                     builder: (_) =>
                         viewModel.networkConnectivityEnums == NetworkConnectivityEnums.off
                             ? const NoNetworkCard()
-                            : viewModel.isLoading || viewModel.homeResponseModel == null
+                            : viewModel.isLoading || viewModel.horoscope == null
                                 ? const LoadingIndicator()
                                 : buildSingleChildScrollView(context, viewModel)))));
   }
@@ -68,8 +68,7 @@ class HomeExploreView extends StatelessWidget {
       builder: (_) => viewModel.isFetching
           ? SizedBox(height: context.height * 0.4, child: const LoadingIndicator())
           : HoroscopeDetailCard(
-              homeResponseModel: viewModel.homeResponseModel!,
-              horoscopeSign: horoscopeSignForNetwork));
+              horoscope: viewModel.horoscope!, horoscopeSign: horoscopeSignForNetwork));
 
   TabBar buildTabBar(HomeViewModel viewModel) => TabBar(
       physics: const NeverScrollableScrollPhysics(),

@@ -19,7 +19,7 @@ import 'package:mobx/mobx.dart';
 import '../../../../core/base/viewmodel/base_view_model.dart';
 import '../../../core/constants/cache/cache_constants.dart';
 import '../../../product/constants/enum/horoscope_info_enums.dart';
-import '../model/home_response_model.dart';
+import '../model/horoscope.dart';
 
 part 'home_view_model.g.dart';
 
@@ -57,7 +57,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   bool isFetching = false;
 
   @observable
-  HomeResponseModel? homeResponseModel;
+  Horoscope? horoscope;
 
   @observable
   NetworkConnectivityEnums? networkConnectivityEnums;
@@ -88,7 +88,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     _changeLoading();
     await cacheManager.init();
     appCacheModel = getUserData();
-    homeResponseModel = await homeService.fetchHoroscope(
+    horoscope = await homeService.fetchHoroscope(
         HomeModel(sign: appCacheModel?.horoscopeSign!, day: dayNamesForNetwork?.first));
     _changeLoading();
   }
@@ -96,7 +96,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   @action
   Future<void> getSpecificHoroscope(String horoscopeSign) async {
     _changeFetching();
-    homeResponseModel = await homeService
+    horoscope = await homeService
         .fetchHoroscope(HomeModel(sign: horoscopeSign, day: dayNamesForNetwork![currentIndex]));
     _changeFetching();
   }

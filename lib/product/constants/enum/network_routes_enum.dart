@@ -1,5 +1,5 @@
 enum NetworkRoutesEnum {
-  empty('');
+  horoscope('horoscope/');
 
   final String routeName;
   const NetworkRoutesEnum(this.routeName);

@@ -36,6 +36,7 @@ class ColorSchemeLight {
   final Color darkGreen = const Color(0xff1B512D);
 
   final Color yellow = const Color(0xFFcbd90a);
+  final Color orange = const Color.fromARGB(255, 241, 141, 0);
 
   final Color lightPurple = const Color(0xFF800080);
   final Color purple = const Color.fromARGB(255, 104, 36, 160);

@@ -3,7 +3,7 @@ description: It is a flutter application where you can follow daily horoscope in
 
 publish_to: 'none' 
 
-version: 1.0.0+1
+version: 1.0.0+4
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
@@ -36,11 +36,13 @@ dependencies:
 
   #Core
   equatable: ^2.0.3
+  flutter_dotenv: ^5.0.2
 
   #UI Utitilities
   flutter_svg: ^2.0.5
   animated_text_kit: ^4.2.2
   kartal: ^2.3.2
+  flutter_rating_bar: ^4.0.1
   
 dev_dependencies:
   flutter_test:
@@ -54,11 +56,12 @@ dev_dependencies:
 
 flutter_icons:
   android: "launcher_icon"
-  image_path: "asset/image/app_icon.png"
+  image_path: "assets/image/app_icon.png"
 
 flutter:
   uses-material-design: true
   assets:
-    - asset/image/
-    - asset/svg/
-    - asset/lang/
+    - assets/image/
+    - assets/svg/
+    - assets/lang/
+    - .env
