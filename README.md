@@ -20,10 +20,8 @@ It is a flutter application where you can follow daily horoscope information.
 
 
 ## Horoscope API
-100% Free & Open-source Horoscope API
-- [Aztro API](https://aztro.sameerkumar.website) 
-- [Aztro API Github](https://github.com/sameerkumar18/aztro) 
 
+Since the previously used Open Source API is no longer accessible, I have to continue with a new private API. Thanks for your understanding.
 
 ## Screenshots
 <table>
