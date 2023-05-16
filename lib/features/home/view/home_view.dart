@@ -71,7 +71,7 @@ class HomeView extends StatelessWidget {
                     context.emptySizedHeightBoxLow,
                     buildObserverCard(viewModel, context),
                     context.emptySizedHeightBoxLow3x,
-                    Text(LocaleKeys.home_explore.tr(), style: context.textTheme.subtitle1),
+                    Text(LocaleKeys.home_explore.tr(), style: context.textTheme.titleMedium),
                     context.emptySizedHeightBoxLow3x,
                     SizedBox(height: context.height * 0.2, child: buildExploreListView(viewModel))
                   ])));

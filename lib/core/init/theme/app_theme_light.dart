@@ -58,8 +58,8 @@ class AppThemeLight extends AppTheme with LightThemeInterface {
 
   TextButtonThemeData get textButtonTheme => TextButtonThemeData(
       style: TextButton.styleFrom(
-          primary: colorSchemeLight!.purple,
-          onSurface: colorSchemeLight!.white,
+          foregroundColor: colorSchemeLight!.purple,
+          disabledForegroundColor: colorSchemeLight!.white,
           backgroundColor: colorSchemeLight!.purple,
           shadowColor: colorSchemeLight!.black,
           shape: RoundedRectangleBorder(
@@ -69,9 +69,9 @@ class AppThemeLight extends AppTheme with LightThemeInterface {
 
   ElevatedButtonThemeData get elevatedButtonTheme => ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-          primary: colorSchemeLight!.white,
-          onPrimary: colorSchemeLight!.black,
-          onSurface: colorSchemeLight!.black,
+          backgroundColor: colorSchemeLight!.white,
+          foregroundColor: colorSchemeLight!.black,
+          disabledForegroundColor: colorSchemeLight!.black,
           shadowColor: colorSchemeLight!.black,
           alignment: Alignment.center,
           elevation: 10,

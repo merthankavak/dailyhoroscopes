@@ -37,31 +37,31 @@ class HoroscopeDetailCard extends StatelessWidget {
           Column(
             children: [
               Text(homeResponseModel.luckyNumber!),
-              Text(LocaleKeys.home_luckyNumber.tr(), style: context.textTheme.caption)
+              Text(LocaleKeys.home_luckyNumber.tr(), style: context.textTheme.bodySmall)
             ],
           ),
           Column(
             children: [
               Text(homeResponseModel.color!),
-              Text(LocaleKeys.home_color.tr(), style: context.textTheme.caption)
+              Text(LocaleKeys.home_color.tr(), style: context.textTheme.bodySmall)
             ],
           ),
           Column(
             children: [
               Text(homeResponseModel.luckyTime!),
-              Text(LocaleKeys.home_luckyTime.tr(), style: context.textTheme.caption)
+              Text(LocaleKeys.home_luckyTime.tr(), style: context.textTheme.bodySmall)
             ],
           ),
           Column(children: [
             Text(homeResponseModel.mood!),
-            Text(LocaleKeys.home_mood.tr(), style: context.textTheme.caption)
+            Text(LocaleKeys.home_mood.tr(), style: context.textTheme.bodySmall)
           ])
         ]);
   }
 
   Column buildCompatibilityColumn(BuildContext context) {
     return Column(children: [
-      Text(LocaleKeys.home_compatibility.tr(), style: context.textTheme.caption),
+      Text(LocaleKeys.home_compatibility.tr(), style: context.textTheme.bodySmall),
       context.emptySizedHeightBoxLow3x,
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Image.asset(horoscopeSign.toLowerCase().toPNG,
