@@ -75,13 +75,13 @@ class _OnBoardViewState extends State<OnBoardView> with SingleTickerProviderStat
       value: model.title,
       textAlign: TextAlign.center,
       textStyle:
-          Theme.of(context).textTheme.headline6!.copyWith(color: context.colorScheme.onPrimary));
+          Theme.of(context).textTheme.titleLarge!.copyWith(color: context.colorScheme.onPrimary));
 
   Widget buildAutoLocalTextDescription(OnBoardModel model, BuildContext context) => LocaleText(
       value: model.desc,
       textAlign: TextAlign.center,
       textStyle:
-          Theme.of(context).textTheme.subtitle1!.copyWith(color: context.colorScheme.onPrimary));
+          Theme.of(context).textTheme.titleMedium!.copyWith(color: context.colorScheme.onPrimary));
 
   SvgPicture buildSvgPicture(String path) => SvgPicture.asset(path);
 }

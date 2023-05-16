@@ -41,5 +41,5 @@ class SplashView extends StatelessWidget {
       boxHeight: context.height * 0.1,
       waveDuration: context.durationNormal,
       boxBackgroundColor: context.colorScheme.onPrimary,
-      textStyle: context.textTheme.headline6!);
+      textStyle: context.textTheme.titleLarge!);
 }

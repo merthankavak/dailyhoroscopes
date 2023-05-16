@@ -15,22 +15,22 @@ class LogoutDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomDialog(
         title:
-            Text(LocaleKeys.home_alert_title.tr(), style: Theme.of(context).textTheme.bodyText1!),
+            Text(LocaleKeys.home_alert_title.tr(), style: Theme.of(context).textTheme.bodyLarge!),
         content:
-            Text(LocaleKeys.home_alert_desc.tr(), style: Theme.of(context).textTheme.bodyText2!),
+            Text(LocaleKeys.home_alert_desc.tr(), style: Theme.of(context).textTheme.bodyMedium!),
         actions: [
           TextButton(
               onPressed: onPressedContinue,
               child: Text(LocaleKeys.home_alert_continue.tr(),
                   textAlign: TextAlign.center,
-                  style:
-                      context.textTheme.bodyText2!.copyWith(color: context.colorScheme.onPrimary))),
+                  style: context.textTheme.bodyMedium!
+                      .copyWith(color: context.colorScheme.onPrimary))),
           TextButton(
               onPressed: onPressedCancel,
               child: Text(LocaleKeys.home_alert_cancel.tr(),
                   textAlign: TextAlign.center,
                   style:
-                      context.textTheme.bodyText2!.copyWith(color: context.colorScheme.onPrimary)))
+                      context.textTheme.bodyMedium!.copyWith(color: context.colorScheme.onPrimary)))
         ]);
   }
 }

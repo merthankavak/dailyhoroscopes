@@ -43,9 +43,9 @@ class HomeWelcomeCard extends StatelessWidget {
         buildRichText(context),
         context.emptySizedHeightBoxLow,
         Text(appCacheModel.birthDate!,
-            style: context.textTheme.caption!.copyWith(color: context.colorScheme.onBackground)),
+            style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.onBackground)),
         Text(appCacheModel.horoscopeSign!.toCapitalized(),
-            style: context.textTheme.caption!.copyWith(color: context.colorScheme.onBackground))
+            style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.onBackground))
       ],
     );
   }
@@ -55,10 +55,10 @@ class HomeWelcomeCard extends StatelessWidget {
         text: TextSpan(children: [
       TextSpan(
           text: LocaleKeys.home_welcome.tr(),
-          style: context.textTheme.subtitle1!.copyWith(color: context.colorScheme.onBackground)),
+          style: context.textTheme.titleMedium!.copyWith(color: context.colorScheme.onBackground)),
       TextSpan(
           text: appCacheModel.name.toCapitalized(),
-          style: context.textTheme.subtitle1!.copyWith(color: context.colorScheme.onPrimary))
+          style: context.textTheme.titleMedium!.copyWith(color: context.colorScheme.onPrimary))
     ]));
   }
 }
