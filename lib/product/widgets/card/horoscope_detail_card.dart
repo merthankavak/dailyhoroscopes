@@ -4,7 +4,7 @@ import 'package:kartal/kartal.dart';
 
 import '../../../core/extension/image_extension.dart';
 import '../../../core/init/lang/locale_keys.g.dart';
-import '../../../feature/home/model/home_response_model.dart';
+import '../../../features/home/model/home_response_model.dart';
 
 class HoroscopeDetailCard extends StatelessWidget {
   final String horoscopeSign;

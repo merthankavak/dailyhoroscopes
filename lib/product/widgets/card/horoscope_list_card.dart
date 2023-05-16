@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../../core/extension/image_extension.dart';
-import '../../../feature/home/viewmodel/home_view_model.dart';
+import '../../../features/home/viewmodel/home_view_model.dart';
 import '../../constants/enum/horoscope_info_enums.dart';
 
 class HoroscopeListCard extends StatelessWidget {
