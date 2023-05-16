@@ -1,4 +1,4 @@
-package com.mkavaktech.dailyhoroscopes
+package com.mkavaktech.dailyhoroscopeapp
 
 import io.flutter.embedding.android.FlutterActivity
 
