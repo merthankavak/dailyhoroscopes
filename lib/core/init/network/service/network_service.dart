@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:vexana/vexana.dart';
 
 class NetworkService {
@@ -9,13 +10,12 @@ class NetworkService {
 
   NetworkService._init();
 
-  static const String _baseUrl = 'https://aztro.sameerkumar.website/';
   static const int _timeout = 30000;
 
   final INetworkManager networkManager = NetworkManager<EmptyModel>(
     fileManager: LocalFile(),
     options: BaseOptions(
-      baseUrl: _baseUrl,
+      baseUrl: dotenv.env['BASE_URL']!,
       followRedirects: false,
       receiveTimeout: const Duration(milliseconds: _timeout),
       sendTimeout: const Duration(milliseconds: _timeout),

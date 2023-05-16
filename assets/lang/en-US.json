@@ -45,12 +45,18 @@
             "tomorrow": "Tomorrow"
         },
         "explore": "Explore",
-        "luckyNumber": "Lucky Number",
-        "luckyTime": "Lucky Time",
-        "color": "Color",
+
+        "matches": "Matches",
+        "love": "Love",
+        "friendship": "Friendship",
+        "career": "Career",
+
         "mood": "Mood",
+    
+        "vibe": "Vibe",
+        "success": "Success",
+
         "dateRange": "Date Range",
-        "compatibility": "Compatibility",
         "alert": {
             "title": "Logout",
             "desc": "Do you really want to log out?",

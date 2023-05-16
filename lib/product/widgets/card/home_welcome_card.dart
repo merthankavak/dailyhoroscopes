@@ -4,13 +4,13 @@ import 'package:kartal/kartal.dart';
 
 import '../../../core/extension/image_extension.dart';
 import '../../../core/init/lang/locale_keys.g.dart';
-import '../../../features/home/model/home_response_model.dart';
+import '../../../features/home/model/horoscope.dart';
 import '../../model/app_cache_model.dart';
 
 class HomeWelcomeCard extends StatelessWidget {
-  final HomeResponseModel homeResponseModel;
+  final Horoscope horoscope;
   final AppCacheModel appCacheModel;
-  const HomeWelcomeCard({Key? key, required this.homeResponseModel, required this.appCacheModel})
+  const HomeWelcomeCard({Key? key, required this.horoscope, required this.appCacheModel})
       : super(key: key);
 
   @override
@@ -31,7 +31,7 @@ class HomeWelcomeCard extends StatelessWidget {
     return Column(children: [
       Image.asset(appCacheModel.horoscopeSign!.toPNG,
           width: context.width * 0.2, height: context.height * 0.1),
-      Text(homeResponseModel.dateRange!,
+      Text(horoscope.dateRange!,
           style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.onBackground))
     ]);
   }
