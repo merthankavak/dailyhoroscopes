@@ -7,9 +7,9 @@ import 'package:dailyhoroscopes/core/init/cache/cache_manager_interface.dart';
 import 'package:dailyhoroscopes/core/init/lang/language_manager.dart';
 import 'package:dailyhoroscopes/core/init/network/connectivity/network_connectivity.dart';
 import 'package:dailyhoroscopes/core/init/network/connectivity/network_connectivity_interface.dart';
-import 'package:dailyhoroscopes/feature/home/model/home_model.dart';
-import 'package:dailyhoroscopes/feature/home/service/home_service.dart';
-import 'package:dailyhoroscopes/feature/home/service/home_service_interface.dart';
+import 'package:dailyhoroscopes/features/home/model/home_model.dart';
+import 'package:dailyhoroscopes/features/home/service/home_service.dart';
+import 'package:dailyhoroscopes/features/home/service/home_service_interface.dart';
 import 'package:dailyhoroscopes/product/constants/enum/day_enums.dart';
 import 'package:dailyhoroscopes/product/model/app_cache_model.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -129,7 +129,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
       networkConnectivityEnums = await networkConnectivity.checkNetworkConnectivity();
 
   void sendExploreView(String horoscopeSign, String horoscopeSignForNetwork) {
-    navigation.router.goNamed(NavigationEnums.homeExploreView.routeName, params: {
+    navigation.router.goNamed(NavigationEnums.homeExploreView.routeName, pathParameters: {
       'horoscopeSign': horoscopeSign,
       'horoscopeSignForNetwork': horoscopeSignForNetwork
     });

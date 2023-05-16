@@ -1,10 +1,10 @@
 import 'package:go_router/go_router.dart';
 
-import '../../../feature/auth/onboard/view/onboard_view.dart';
-import '../../../feature/auth/onboard/view/subview/onboard_subview.dart';
-import '../../../feature/auth/splash/view/splash_view.dart';
-import '../../../feature/home/view/home_view.dart';
-import '../../../feature/home/view/subview/home_explore_view.dart';
+import '../../../features/auth/onboard/view/onboard_view.dart';
+import '../../../features/auth/onboard/view/subview/onboard_subview.dart';
+import '../../../features/auth/splash/view/splash_view.dart';
+import '../../../features/home/view/home_view.dart';
+import '../../../features/home/view/subview/home_explore_view.dart';
 import '../../constants/enums/navigation_enums.dart';
 
 class NavigationService {
@@ -33,8 +33,8 @@ class NavigationService {
         path:
             '${NavigationEnums.homeExploreView.routeName}/:horoscopeSign/:horoscopeSignForNetwork',
         builder: (context, state) => HomeExploreView(
-              horoscopeSign: state.params['horoscopeSign']!,
-              horoscopeSignForNetwork: state.params['horoscopeSignForNetwork']!,
+              horoscopeSign: state.pathParameters['horoscopeSign']!,
+              horoscopeSignForNetwork: state.pathParameters['horoscopeSignForNetwork']!,
             ))
   ]);
 }
