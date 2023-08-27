@@ -31,9 +31,9 @@ Since the previously used Open Source API is no longer accessible, I have to con
      <td>Create User Screen</td>
   </tr>
   <tr>
-     <td><img src="screenshots/splash.png" width=270 height=480></td>
-     <td><img src="screenshots/onboard.png" width=270 height=480></td>
-     <td><img src="screenshots/create_user.png" width=270 height=480></td>
+     <td width="33%"><img src="screenshots/splash.png" alt="Splash"></td>
+     <td width="33%"><img src="screenshots/onboard.png" alt="OnBoard"></td>
+     <td width="33%"><img src="screenshots/create_user.png" alt="Create User"></td>
   </tr>
  </table>
 
@@ -44,8 +44,8 @@ Since the previously used Open Source API is no longer accessible, I have to con
      <td>Details Screen</td>
   </tr>
   <tr>
-     <td><img src="screenshots/home.png" width="270" height="480"></td>
-     <td><img src="screenshots/explore.png" width=270 height=480></td>
-     <td><img src="screenshots/detail.png" width=270 height=480></td>
+     <td width="33%"><img src="screenshots/home.png" alt="Home"></td>
+     <td width="33%"><img src="screenshots/explore.png" alt="Explore"></td>
+     <td width="33%"><img src="screenshots/detail.png" alt="Details"></td>
   </tr>
  </table>
